@@ -4,11 +4,12 @@ import ProjectsSlider from "./components/ProjectsSlider"
 import SubsidyTable from "./components/SubsidyTable"
 import SystemCards from "./components/SystemCards"
 import ContactCTA from "./components/ContactCTA"
+import AIChatbot from "./components/AIChatbot"
 
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-green-50 via-orange-50 to-white">
-      
+
       {/* Navbar */}
       <Navbar />
 
@@ -23,6 +24,9 @@ const App: React.FC = () => {
         <SubsidyTable />
         <SystemCards />
       </main>
+
+      {/* AI ChatBox */}
+      <AIChatbot />
 
       {/* Contact CTA */}
       <ContactCTA />

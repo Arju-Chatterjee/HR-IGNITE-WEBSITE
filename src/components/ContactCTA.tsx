@@ -88,16 +88,6 @@ const ContactCTA = () => {
           ))}
         </div>
       </div>
-
-      {/* Floating WhatsApp */}
-      <a
-        href="https://wa.me/9170056 82736"
-        className="fixed bottom-8 right-8 w-20 h-20 bg-green-500 hover:bg-green-600 text-white rounded-3xl shadow-2xl hover:scale-110 transition-all flex items-center justify-center text-3xl"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        💬
-      </a>
     </section>
   );
 };
