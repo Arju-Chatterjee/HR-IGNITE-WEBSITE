@@ -1,4 +1,4 @@
-
+import Logo from "../Assets/logo.png"
 import { useEffect, useState } from "react"
 
 
@@ -30,7 +30,7 @@ const Navbar: React.FC = () => {
                     <a href="/" className="flex items-center gap-3">
                         <div className="w-9 h-9 rounded-lg  flex items-center justify-center">
                             <img
-                                src="/logo.png"
+                                src={Logo}
                                 alt="HR Ignite Logo"
                                 className="w-full h-full object-contain p-1"
                             />

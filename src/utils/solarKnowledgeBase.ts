@@ -862,22 +862,28 @@ Be friendly and professional. If you don't know something, recommend contacting 
   ],
 };
 
+const keywordIndex: Map<string, number[]> = new Map();
+
+solarKnowledgeBase.qaData.forEach((qa, index) => {
+  qa.keywords.forEach((keyword) => {
+    const key = keyword.toLowerCase();
+    if (!keywordIndex.has(key)) {
+      keywordIndex.set(key, []);
+    }
+    keywordIndex.get(key)!.push(index);
+  });
+});
+
 export const getContextualAnswer = (userQuestion: string): string | null => {
   const lowerQuestion = userQuestion.toLowerCase();
-
-  for (const qa of solarKnowledgeBase.qaData) {
-    const matchFound = qa.keywords.some((keyword) =>
-      lowerQuestion.includes(keyword.toLowerCase())
-    );
-
-    if (matchFound) {
-      return qa.answer;
+  for (const [keyword, indices] of keywordIndex.entries()) {
+    if (lowerQuestion.includes(keyword)) {
+      return solarKnowledgeBase.qaData[indices[0]].answer;
     }
   }
 
   return null;
 };
-
 export const buildPromptContext = (): string => {
   return solarKnowledgeBase.qaData
     .map((qa) => `Q: ${qa.question}\nA: ${qa.answer}`)
