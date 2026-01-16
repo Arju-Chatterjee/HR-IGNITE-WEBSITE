@@ -28,7 +28,7 @@ const Navbar: React.FC = () => {
 
                     {/* Logo */}
                     <a href="/" className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-lg bg-white flex items-center justify-center">
+                        <div className="w-9 h-9 rounded-lg  flex items-center justify-center">
                             <img
                                 src="/logo.png"
                                 alt="HR Ignite Logo"
@@ -49,7 +49,7 @@ const Navbar: React.FC = () => {
 
                     {/* Desktop Menu */}
                     <div className="hidden md:flex items-center gap-8">
-                        {["calculator", "benefits", "projects", "contact"].map(item => (
+                        {[ "about us", "calculator", "benefits", "Projects", "products", "contact"].map(item => (
                             <a
                                 key={item}
                                 href={`#${item}`}
