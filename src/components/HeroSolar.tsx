@@ -1,129 +1,207 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-const UNIT_PER_KW = 120; // avg units per month
-const TARIFF = 6; // ₹ per unit (TSECL approx)
+const UNIT_PER_KW = 120; // Average units per month
+const TARIFF = 6; // ₹ per unit
 
 const HeroSolar = () => {
   const [selectedKW, setSelectedKW] = useState(3);
   const [monthlySaving, setMonthlySaving] = useState(0);
+  const [showInfo, setShowInfo] = useState(false);
 
-  const plans = Array.from({ length: 10 }, (_, i) => i + 1); // 1 to 10 kW
+  const plans = Array.from({ length: 10 }, (_, i) => i + 1);
 
-  const getSubsidy = (kw) => {
+  const rotatingPhrases = [
+    "Reduce Your Electricity Bills",
+    "Save Money Every Month",
+    "Go Green & Sustainable",
+  ];
+  const [currentPhrase, setCurrentPhrase] = useState(0);
+
+  // Rotate phrases every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentPhrase((prev) => (prev + 1) % rotatingPhrases.length);
+    }, 5000); // 5-second delay
+    return () => clearInterval(interval);
+  }, []);
+
+  const getSubsidy = (kw: number) => {
     if (kw === 1) return 33000;
     if (kw === 2) return 66000;
-    return 85800; // 3 kW and above
+    return 85800;
   };
 
   const calculateSaving = () => {
-    const units = selectedKW * UNIT_PER_KW;
-    const saving = units * TARIFF;
-    setMonthlySaving(saving);
+    setMonthlySaving(selectedKW * UNIT_PER_KW * TARIFF);
+    setShowInfo(false);
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-gradient-to-br from-white via-green-50 to-orange-100">
+    <section
+      className="relative min-h-screen flex items-center bg-cover bg-center overflow-hidden"
+      style={{
+        backgroundImage:
+          "url('https://images.unsplash.com/photo-1509391366360-2e959784a276')",
+      }}
+    >
+      {/* Dark overlay */}
+      <div className="absolute inset-0 bg-black/65" />
 
-      {/* Glass overlay */}
-      <div className="absolute inset-0 bg-white/40 backdrop-blur-xl" />
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
+        <div className="grid lg:grid-cols-2 gap-20 items-center">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-20 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* LEFT CONTENT */}
+          <div className="text-white max-w-xl">
+            <AnimatePresence mode="wait">
+              <motion.h1
+                key={currentPhrase}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -50 }}
+                transition={{ duration: 1.2, ease: "easeInOut" }} // slower and smooth
+                className="font-extrabold leading-tight text-5xl lg:text-6xl"
+              >
+                {rotatingPhrases[currentPhrase]}
+              </motion.h1>
+            </AnimatePresence>
 
-          {/* LEFT */}
-          <div className="lg:pl-12">
-            <h1 className="text-6xl lg:text-7xl xl:text-8xl font-black text-green-900 mb-8 leading-none">
-              <div>Your Electricity</div>
-              <div className="mt-4">
-                <span className="text-5xl lg:text-6xl text-orange-500 font-normal">
-                  Bill =
-                </span>
-                <span className="text-transparent bg-gradient-to-r from-green-500 to-orange-500 bg-clip-text text-8xl lg:text-9xl">
-                  ₹0
-                </span>
+            <motion.span
+              className="block mt-4 text-7xl lg:text-9xl text-white font-black"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 1 }}
+            >
+              With Solar
+            </motion.span>
+
+            <motion.p
+              className="mt-8 text-lg text-gray-200"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 1 }}
+            >
+              Install government-approved rooftop solar systems and save on
+              electricity with long-term reliability and subsidy benefits.
+            </motion.p>
+
+            <motion.div
+              className="mt-10 space-y-3"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6, duration: 1 }}
+            >
+              <div className="flex items-center gap-3 text-gray-200">
+                <span className="text-green-400">✔</span>
+                1kW – 10kW Residential Systems
               </div>
-            </h1>
-
-            <ul className="text-xl lg:text-2xl text-green-700 mb-12 max-w-xl leading-relaxed list-disc pl-6 space-y-2">
-              <li>1kW to 10kW Rooftop Solar Systems</li>
-              <li className="font-semibold text-orange-500">
-                Upto ₹85,800 Govt Subsidy
-              </li>
-              <li>Reduce Monthly Electricity Bills</li>
-            </ul>
+              <div className="flex items-center gap-3 text-gray-200">
+                <span className="text-green-400">✔</span>
+                Subsidy up to ₹85,800
+              </div>
+            </motion.div>
           </div>
 
           {/* CALCULATOR */}
-          <div className="bg-white/70 backdrop-blur-2xl rounded-3xl p-10 lg:p-12 border border-green-200 shadow-xl">
+          <motion.div
+            className="bg-white rounded-3xl p-10 shadow-2xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <h3 className="text-3xl font-bold text-gray-900 mb-8 text-center">
+              Solar Savings Calculator
+            </h3>
 
-            <div className="text-center mb-10">
-              <h3 className="text-3xl lg:text-4xl font-bold text-green-900 mb-2">
-                Solar Savings Calculator
-              </h3>
-              <div className="text-orange-500 font-semibold">
-                Estimated (TSECL)
-              </div>
-            </div>
-
-            {/* kW BUTTONS WITH SUBSIDY */}
-            <div className="grid grid-cols-5 gap-3 mb-8">
+            {/* kW selector */}
+            <div className="grid grid-cols-5 gap-4 mb-8">
               {plans.map((kw) => {
-                const isActive = selectedKW === kw;
-
+                const active = selectedKW === kw;
                 return (
-                  <button
+                  <motion.button
                     key={kw}
                     onClick={() => setSelectedKW(kw)}
-                    className={`rounded-xl p-3 transition text-center
-                      ${
-                        isActive
-                          ? "bg-orange-500 text-white"
-                          : "bg-white border border-green-200 text-green-800 hover:border-orange-400"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`rounded-xl p-4 text-center transition-all
+                      ${active
+                        ? "border-2 border-green-700 bg-green-50 shadow-lg"
+                        : "border border-gray-200 hover:border-gray-400"
                       }`}
                   >
-                    <div className="text-lg font-black">{kw} kW</div>
-
-                    {/* Subsidy line */}
-                    <div className="text-sm font-semibold mt-1">
-                      <span
-                        className={
-                          isActive ? "text-white" : "text-orange-500"
-                        }
-                      >
-                        Subsidy{" "}
-                      </span>
-                      <span
-                        className={
-                          isActive ? "text-white" : "text-green-600"
-                        }
-                      >
-                        ₹{getSubsidy(kw).toLocaleString()}
-                      </span>
+                    <div className="font-bold text-gray-900">{kw} kW</div>
+                    <div className="text-xs text-gray-600 mt-1">
+                      ₹{getSubsidy(kw).toLocaleString()}
                     </div>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
 
-            {/* CALCULATE BUTTON */}
-            <button
-              onClick={calculateSaving}
-              className="w-full mb-8 bg-gradient-to-r from-green-500 to-orange-500 text-white font-black py-5 rounded-2xl text-xl shadow-lg hover:-translate-y-1 transition"
-            >
-              Calculate
-            </button>
+            {/* Button + Info */}
+            <div className="flex items-center gap-3">
+              <motion.button
+                onClick={calculateSaving}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex-1 bg-green-700 hover:bg-green-800 text-white py-4 rounded-xl font-bold text-lg transition"
+              >
+                Calculate Savings
+              </motion.button>
 
-            {/* RESULT */}
-            <div className="p-8 bg-green-50 rounded-2xl border border-green-200 text-center">
-              <div className="text-4xl font-black text-green-600">
-                ₹{monthlySaving.toLocaleString()}
-              </div>
-              <div className="text-green-700 font-semibold">
-                Estimated Monthly Bill Saving
-              </div>
+              {/* Info button */}
+              <button
+                onClick={() => setShowInfo(!showInfo)}
+                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-200 transition font-bold text-lg"
+              >
+                i
+              </button>
             </div>
 
-          </div>
+            {/* Info Box */}
+            <AnimatePresence>
+              {showInfo && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -10 }}
+                  className="mt-4 bg-gray-50 p-4 rounded-xl border border-gray-200 text-gray-700 text-sm"
+                >
+                  <p>
+                    <strong>Calculation Breakdown:</strong>
+                  </p>
+                  <ul className="mt-2 list-disc list-inside space-y-1">
+                    <li>Selected System: {selectedKW} kW</li>
+                    <li>Average Units per Month: {selectedKW * UNIT_PER_KW} units</li>
+                    <li>Tariff Rate: ₹{TARIFF} per unit</li>
+                    <li>
+                      Monthly Savings: ₹{(selectedKW * UNIT_PER_KW * TARIFF).toLocaleString()}
+                    </li>
+                  </ul>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Result */}
+            <AnimatePresence>
+              {monthlySaving > 0 && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="mt-8 bg-green-50 rounded-xl p-6 text-center shadow-md"
+                >
+                  <div className="text-4xl font-extrabold text-green-700">
+                    ₹{monthlySaving.toLocaleString()}
+                  </div>
+                  <p className="text-green-900 mt-1 font-medium">
+                    Estimated Monthly Savings
+                  </p>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+          </motion.div>
         </div>
       </div>
     </section>

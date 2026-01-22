@@ -1,10 +1,10 @@
-import Navbar from "./components/Navbar"
-import HeroSolar from "./components/HeroSolar"
-import ProjectsSlider from "./components/ProjectsSlider"
-import SubsidyTable from "./components/SubsidyTable"
-import SystemCards from "./components/SystemCards"
-import ContactCTA from "./components/ContactCTA"
-import AIChatbot from "./components/AIChatbot"
+import Navbar from "./components/Navbar";
+import HeroSolar from "./components/HeroSolar";
+import ProjectsSlider from "./components/ProjectsSlider";
+import WorkProcess from "./components/WorkProcess";
+import SystemCards from "./components/SystemCards";
+import ContactCTA from "./components/ContactCTA";
+import AIChatbot from "./components/AIChatbot";
 
 const App: React.FC = () => {
   return (
@@ -16,22 +16,24 @@ const App: React.FC = () => {
       {/* Hero Section */}
       <HeroSolar />
 
-      {/* Projects Slider Section */}
+      {/* Projects / Installations */}
       <ProjectsSlider />
 
-      {/* Main Content */}
-      <main className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8 space-y-20">
-        <SubsidyTable />
+      {/* Work Process */}
+      <WorkProcess />
+
+      {/* Systems */}
+      <main className="max-w-7xl mx-auto px-4 py-16 sm:px-6 lg:px-8">
         <SystemCards />
       </main>
 
-      {/* AI ChatBox */}
-      <AIChatbot />
-
       {/* Contact CTA */}
       <ContactCTA />
-    </div>
-  )
-}
 
-export default App
+      {/* AI Chatbot (Floating) */}
+      <AIChatbot />
+    </div>
+  );
+};
+
+export default App;

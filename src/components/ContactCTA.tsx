@@ -1,95 +1,175 @@
-const ContactCTA = () => {
+import { Mail, Phone, MapPin, Send, ChevronDown } from "lucide-react";
+import { useState } from "react";
+import Logo from "../assets/logo.png"; // ✅ adjust path if needed
+
+const offices = [
+  {
+    city: "Agartala (Head Office)",
+    address: "Agartala, Tripura 799001, India",
+    phone: "+91 70056 82736",
+  },
+  {
+    city: "Udaipur",
+    address: "Udaipur, Gomati District, Tripura",
+    phone: "+91 98565 52051",
+  },
+  {
+    city: "Dhalai",
+    address: "Ambassa, Dhalai District, Tripura",
+    phone: "+91 94367 96691",
+  },
+  {
+    city: "North Tripura",
+    address: "Dharmanagar, North Tripura",
+    phone: "+91 60095 56712",
+  },
+  {
+    city: "Unokoti",
+    address: "Kailashahar, Unokoti District",
+    phone: "+91 60091 78064",
+  },
+];
+
+const Footer = () => {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
   return (
-    <section
-      className="relative py-32 overflow-hidden"
-      style={{
-        background:
-          "linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 40%, #FFF7ED 100%)",
-      }}
-    >
-      {/* Soft Background Shapes */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-72 h-72 bg-green-300/30 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-72 h-72 bg-orange-300/30 rounded-full blur-3xl"></div>
-      </div>
+    <footer className="bg-[#1f2933] text-gray-300 pt-20">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Heading */}
-        <div className="text-center mb-20">
-          <h2 className="text-5xl lg:text-7xl font-black text-green-900 mb-8 leading-tight">
-            Ready For{" "}
-            <span className="bg-gradient-to-r from-orange-500 via-yellow-500 to-orange-400 bg-clip-text text-transparent">
-              ₹0 Electricity Bills
-            </span>
-          </h2>
-          <p className="text-2xl text-green-800 mb-16 max-w-4xl mx-auto leading-relaxed">
-            Free Site Survey • Complete Subsidy Processing • 15-Day Installation •
-            27-Year Warranty • Dedicated Support Team
+        {/* Top Section */}
+        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4 pb-16 border-b border-gray-700">
+
+          {/* Brand */}
+          <div>
+            <img
+              src={Logo}
+              alt="HR Ignite Innovative India Pvt. Ltd."
+              className="w-44 mb-4 transition hover:opacity-90"
+            />
+
+            <p className="text-gray-400 leading-relaxed">
+              Trusted solar & renewable energy solutions for residential and
+              commercial customers. Powering a cleaner and sustainable future.
+            </p>
+          </div>
+
+          {/* Offices */}
+          <div>
+            <h4 className="text-xl font-semibold text-white mb-5">
+              Our Offices
+            </h4>
+
+            <ul className="space-y-3">
+              {offices.map((office, index) => (
+                <li key={index}>
+                  <button
+                    onClick={() =>
+                      setOpenIndex(openIndex === index ? null : index)
+                    }
+                    className="flex items-center justify-between w-full text-left font-medium hover:text-green-400 transition"
+                  >
+                    <span>{office.city}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-300 ${
+                        openIndex === index ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+
+                  {/* Expandable Content */}
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                      openIndex === index
+                        ? "max-h-40 opacity-100 mt-2"
+                        : "max-h-0 opacity-0"
+                    }`}
+                  >
+                    <div className="pl-1 space-y-2 text-sm text-gray-400">
+                      <div className="flex gap-2">
+                        <MapPin className="w-4 h-4 text-green-400 mt-1" />
+                        <span>{office.address}</span>
+                      </div>
+
+                      <div className="flex gap-2">
+                        <Phone className="w-4 h-4 text-green-400" />
+                        <span>{office.phone}</span>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <h4 className="text-xl font-semibold text-white mb-5">
+              Contact
+            </h4>
+
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-green-400" />
+                <span>+91 70056 82736</span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-green-400" />
+                <span>support@hrigniteindia.com</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Subscribe */}
+          <div>
+            <h4 className="text-xl font-semibold text-white mb-5">
+              Subscribe
+            </h4>
+
+            <div className="relative">
+              <input
+                type="email"
+                placeholder="Email address"
+                className="w-full bg-[#111827] border border-gray-600 rounded-lg py-3 px-4 text-gray-300 focus:outline-none focus:border-green-400"
+              />
+              <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-green-500 hover:bg-green-600 p-2 rounded-md transition">
+                <Send className="w-4 h-4 text-white" />
+              </button>
+            </div>
+
+            <div className="flex items-start gap-2 mt-4 text-sm">
+              <input type="checkbox" className="mt-1" />
+              <p>
+                I agree with the{" "}
+                <span className="text-green-400 cursor-pointer">
+                  terms & conditions
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row items-center justify-between py-6 text-sm text-gray-400">
+          <p>
+            © {new Date().getFullYear()} HR Ignite Innovative India Pvt. Ltd.
+            All Rights Reserved.
           </p>
+
+          <div className="flex gap-6 mt-4 md:mt-0">
+            <a href="#" className="hover:text-white">
+              Terms & Conditions
+            </a>
+            <a href="#" className="hover:text-white">
+              Privacy Policy
+            </a>
+          </div>
         </div>
 
-        {/* Stats */}
-        <div className="grid lg:grid-cols-4 gap-8 mb-20 p-12 bg-white rounded-4xl shadow-xl">
-          {[
-            { value: "5.0", label: "★ Google Rating", icon: "⭐" },
-            { value: "353+", label: "Happy Customers", icon: "👥" },
-            { value: "500+", label: "Systems Installed", icon: "⚡" },
-            { value: "27", label: "Years Warranty", icon: "🛡️" },
-          ].map((stat, idx) => (
-            <div
-              key={idx}
-              className="text-center hover:scale-105 transition-transform"
-            >
-              <div className="text-5xl mb-4">{stat.icon}</div>
-              <div className="text-4xl lg:text-5xl font-black text-orange-500 mb-3">
-                {stat.value}
-              </div>
-              <div className="text-green-700 font-semibold text-lg">
-                {stat.label}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* CTAs */}
-        <div className="grid md:grid-cols-3 gap-8 mb-20">
-          <a
-            href="https://wa.me/910056 82736"
-            className="bg-gradient-to-r from-orange-400 to-orange-600 hover:from-orange-500 hover:to-orange-700 text-white font-black py-8 px-12 rounded-4xl text-2xl shadow-xl hover:scale-105 transition-all text-center"
-          >
-            💬 WhatsApp Chat
-          </a>
-
-          <a
-            href="tel:+9170056 82736"
-            className="bg-green-800 hover:bg-green-700 text-white font-black py-8 px-12 rounded-4xl text-2xl shadow-xl hover:scale-105 transition-all text-center"
-          >
-            📞 Call Instantly
-          </a>
-
-          <button className="bg-white border-2 border-orange-400 text-orange-600 font-black py-8 px-12 rounded-4xl text-2xl shadow-xl hover:bg-orange-50 hover:scale-105 transition-all">
-            Free Site Visit
-          </button>
-        </div>
-
-        {/* Info */}
-        <div className="grid md:grid-cols-4 gap-12 text-center pt-20 border-t border-green-200">
-          {[
-            ["📍", "Agartala, Tripura", "Doorstep Service"],
-            ["📱", "+91 70056 82736", "24×7 Support"],
-            ["⭐", "PM Surya Ghar Approved", "MNRE Vendor"],
-            ["⚡", "15 Day Install", "Net Metering Ready"],
-          ].map(([icon, title, sub], i) => (
-            <div key={i} className="space-y-4">
-              <div className="text-4xl">{icon}</div>
-              <div className="text-xl font-bold text-green-900">{title}</div>
-              <div className="text-green-700">{sub}</div>
-            </div>
-          ))}
-        </div>
       </div>
-    </section>
+    </footer>
   );
 };
 
-export default ContactCTA;
+export default Footer;
