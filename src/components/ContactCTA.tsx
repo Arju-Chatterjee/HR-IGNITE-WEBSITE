@@ -113,10 +113,14 @@ const Footer = () => {
                 <Phone className="w-5 h-5 text-green-400" />
                 <span>+91 70056 82736</span>
               </div>
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-green-400" />
+                <span>+91 70051 28028</span>
+              </div>
 
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-green-400" />
-                <span>support@hrigniteindia.com</span>
+                <span>igniteinnovativeindialtd.com</span>
               </div>
             </div>
           </div>

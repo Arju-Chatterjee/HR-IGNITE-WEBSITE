@@ -59,7 +59,7 @@ const HeroSolar = () => {
                 initial={{ opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -50 }}
-                transition={{ duration: 1.2, ease: "easeInOut" }} // slower and smooth
+                transition={{ duration: 1.2, ease: "easeInOut" }}
                 className="font-extrabold leading-tight text-5xl lg:text-6xl"
               >
                 {rotatingPhrases[currentPhrase]}
@@ -100,6 +100,16 @@ const HeroSolar = () => {
                 Subsidy up to ₹85,800
               </div>
             </motion.div>
+
+            {/* Quotation Button */}
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-8 px-8 py-4 bg-green-700 hover:bg-green-800 rounded-xl font-bold text-lg text-white transition"
+              onClick={() => alert("Redirect to quotation form or popup")}
+            >
+              Get a Quotation
+            </motion.button>
           </div>
 
           {/* CALCULATOR */}
@@ -200,7 +210,6 @@ const HeroSolar = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-
           </motion.div>
         </div>
       </div>
