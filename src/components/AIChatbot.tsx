@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { HfInference } from '@huggingface/inference';
 import { solarKnowledgeBase, getContextualAnswer, buildPromptContext, defaultResponse } from '../utils/solarKnowledgeBase';
-import emailjs from '@emailjs/browser';
-import CallbackForm from './CallbackForm';
+// import emailjs from '@emailjs/browser';
+// import CallbackForm from './CallbackForm';
 
 const AIChatbot = () => {
     type Message = {
@@ -14,9 +14,9 @@ const AIChatbot = () => {
     };
 
     const [isOpen, setIsOpen] = useState(false);
-    const [showCallbackForm, setShowCallbackForm] = useState<boolean>(false);
-    const [isCallbackBlocked, setIsCallbackBlocked] = useState(false);
-    const [blockTimeRemaining, setBlockTimeRemaining] = useState<string>('');
+    // const [showCallbackForm, setShowCallbackForm] = useState<boolean>(false);
+    // const [isCallbackBlocked, setIsCallbackBlocked] = useState(false);
+    // const [blockTimeRemaining, setBlockTimeRemaining] = useState<string>('');
     const [messages, setMessages] = useState<Message[]>([
         {
             role: 'bot',
@@ -65,16 +65,16 @@ const AIChatbot = () => {
         }, 300);
     };
 
-    const handleCallbackSuccess = () => {
-        setShowCallbackForm(false);
+    // const handleCallbackSuccess = () => {
+    //     setShowCallbackForm(false);
 
-        const successMessage: Message = {
-            role: 'bot',
-            content: '✅ Thank you! Your callback request has been submitted successfully. We\'ve sent you a confirmation email and our team will contact you within 30 minutes! 🌞',
-            timestamp: new Date()
-        };
-        setMessages(prev => [...prev, successMessage]);
-    };
+    //     const successMessage: Message = {
+    //         role: 'bot',
+    //         content: '✅ Thank you! Your callback request has been submitted successfully. We\'ve sent you a confirmation email and our team will contact you within 30 minutes! 🌞',
+    //         timestamp: new Date()
+    //     };
+    //     setMessages(prev => [...prev, successMessage]);
+    // };
 
     const getAIResponse = async (userQuestion: string): Promise<{ text: string; showCallback?: boolean }> => {
         const contextualAnswer = getContextualAnswer(userQuestion);
@@ -184,50 +184,50 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
         "Hi, I need help with my query regarding solar installation. I've been chatting with your AI assistant but need further assistance. Please connect with me as soon as possible. Thank you!"
     );
 
-    useEffect(() => {
-        const checkCallbackStatus = () => {
-            const callbackData = localStorage.getItem('solar_callback_requested');
+    // useEffect(() => {
+    //     const checkCallbackStatus = () => {
+    //         const callbackData = localStorage.getItem('solar_callback_requested');
 
-            if (callbackData) {
-                const parsed = JSON.parse(callbackData);
-                const currentTime = new Date().getTime();
-                const timeDifference = currentTime - parsed.timestamp;
+    //         if (callbackData) {
+    //             const parsed = JSON.parse(callbackData);
+    //             const currentTime = new Date().getTime();
+    //             const timeDifference = currentTime - parsed.timestamp;
 
-                // Block for 30 minutes (1800000 milliseconds)
-                const BLOCK_DURATION = 30 * 60 * 1000; // 30 minutes
+    //             // Block for 30 minutes (1800000 milliseconds)
+    //             const BLOCK_DURATION = 30 * 60 * 1000; // 30 minutes
 
-                if (timeDifference < BLOCK_DURATION) {
-                    setIsCallbackBlocked(true);
+    //             if (timeDifference < BLOCK_DURATION) {
+    //                 setIsCallbackBlocked(true);
 
-                    // Calculate remaining time
-                    const remainingTime = BLOCK_DURATION - timeDifference;
-                    const minutes = Math.floor(remainingTime / 60000);
-                    const seconds = Math.floor((remainingTime % 60000) / 1000);
-                    setBlockTimeRemaining(`${minutes}m ${seconds}s`);
-                } else {
-                    // Time expired - clear data and enable button
-                    localStorage.removeItem('solar_callback_requested');
-                    setIsCallbackBlocked(false);
-                    setBlockTimeRemaining('');
-                }
-            }
-        };
+    //                 // Calculate remaining time
+    //                 const remainingTime = BLOCK_DURATION - timeDifference;
+    //                 const minutes = Math.floor(remainingTime / 60000);
+    //                 const seconds = Math.floor((remainingTime % 60000) / 1000);
+    //                 setBlockTimeRemaining(`${minutes}m ${seconds}s`);
+    //             } else {
+    //                 // Time expired - clear data and enable button
+    //                 localStorage.removeItem('solar_callback_requested');
+    //                 setIsCallbackBlocked(false);
+    //                 setBlockTimeRemaining('');
+    //             }
+    //         }
+    //     };
 
-        // Check immediately on mount
-        checkCallbackStatus();
+    //     // Check immediately on mount
+    //     checkCallbackStatus();
 
-        // Update every second to show countdown
-        const interval = setInterval(() => {
-            checkCallbackStatus();
-        }, 1000);
+    //     // Update every second to show countdown
+    //     const interval = setInterval(() => {
+    //         checkCallbackStatus();
+    //     }, 1000);
 
-        // Cleanup interval on unmount
-        return () => clearInterval(interval);
-    }, []);
+    //     // Cleanup interval on unmount
+    //     return () => clearInterval(interval);
+    // }, []);
 
-    useEffect(() => {
-        emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
-    }, []);
+    // useEffect(() => {
+    //     emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    // }, []);
 
     return (
         <>
@@ -336,7 +336,7 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                                                 <p className="text-sm leading-relaxed whitespace-pre-line">{message.content}</p>
                                             </div>
                                             {/* Callback Button or Already Requested Message */}
-                                            {message.showCallbackButton && (
+                                            {/* {message.showCallbackButton && (
                                                 <>
                                                     {!isCallbackBlocked ? (
                                                         <button
@@ -381,7 +381,7 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                                                         </div>
                                                     )}
                                                 </>
-                                            )}
+                                            )} */}
 
 
                                             <p className={`text-xs mt-1 ${message.role === 'user' ? 'text-right text-orange-600' : 'text-left text-green-400'}`}>
@@ -449,13 +449,13 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                     </div>
                 </div>
             </div>
-            {showCallbackForm && (
+            {/* {showCallbackForm && (
                 <CallbackForm
                     onClose={() => setShowCallbackForm(false)}
                     onSuccess={handleCallbackSuccess}
                     onCloseChatbox={handleClose}
                 />
-            )}
+            )} */}
         </>
     );
 };

@@ -1,7 +1,7 @@
 import { Mail, Phone, MapPin, Send, ChevronDown } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Logo from "../Assets/logo.png";
-import CallbackForm from "./CallbackForm";
+// import CallbackForm from "./CallbackForm";
 
 const offices = [
   {
@@ -33,54 +33,54 @@ const offices = [
 
 const Footer = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const [showCallbackForm, setShowCallbackForm] = useState(false);
+  // const [showCallbackForm, setShowCallbackForm] = useState(false);
   const [email, setEmail] = useState("");
-  const [isCallbackBlocked, setIsCallbackBlocked] = useState(false);
-  const [blockTimeRemaining, setBlockTimeRemaining] = useState<string>('');
+  // const [isCallbackBlocked, setIsCallbackBlocked] = useState(false);
+  // const [blockTimeRemaining, setBlockTimeRemaining] = useState<string>('');
 
   // Check localStorage on component mount
-  useEffect(() => {
-    const checkCallbackStatus = () => {
-      const callbackData = localStorage.getItem('solar_callback_requested');
+  // useEffect(() => {
+  //   const checkCallbackStatus = () => {
+  //     const callbackData = localStorage.getItem('solar_callback_requested');
 
-      if (callbackData) {
-        const parsed = JSON.parse(callbackData);
-        const currentTime = new Date().getTime();
-        const timeDifference = currentTime - parsed.timestamp;
-        const BLOCK_DURATION = 30 * 60 * 1000;
+  //     if (callbackData) {
+  //       const parsed = JSON.parse(callbackData);
+  //       const currentTime = new Date().getTime();
+  //       const timeDifference = currentTime - parsed.timestamp;
+  //       const BLOCK_DURATION = 30 * 60 * 1000;
 
-        if (timeDifference < BLOCK_DURATION) {
-          setIsCallbackBlocked(true);
-          const remainingTime = BLOCK_DURATION - timeDifference;
-          const minutes = Math.floor(remainingTime / 60000);
-          const seconds = Math.floor((remainingTime % 60000) / 1000);
-          setBlockTimeRemaining(`${minutes}m ${seconds}s`);
-        } else {
-          localStorage.removeItem('solar_callback_requested');
-          setIsCallbackBlocked(false);
-          setBlockTimeRemaining('');
-        }
-      } else {
-        setIsCallbackBlocked(false);
-        setBlockTimeRemaining('');
-      }
-    };
+  //       if (timeDifference < BLOCK_DURATION) {
+  //         setIsCallbackBlocked(true);
+  //         const remainingTime = BLOCK_DURATION - timeDifference;
+  //         const minutes = Math.floor(remainingTime / 60000);
+  //         const seconds = Math.floor((remainingTime % 60000) / 1000);
+  //         setBlockTimeRemaining(`${minutes}m ${seconds}s`);
+  //       } else {
+  //         localStorage.removeItem('solar_callback_requested');
+  //         setIsCallbackBlocked(false);
+  //         setBlockTimeRemaining('');
+  //       }
+  //     } else {
+  //       setIsCallbackBlocked(false);
+  //       setBlockTimeRemaining('');
+  //     }
+  //   };
 
-    checkCallbackStatus();
+  //   checkCallbackStatus();
 
-    const interval = setInterval(checkCallbackStatus, 1000);
+  //   const interval = setInterval(checkCallbackStatus, 1000);
 
-    return () => clearInterval(interval);
-  }, []);
+  //   return () => clearInterval(interval);
+  // }, []);
 
 
 
-  const handleCallbackSuccess = () => {
-    setShowCallbackForm(false);
-    setIsCallbackBlocked(true);
-    // Show success notification
-    alert('✅ Thank you! Your callback request has been submitted. We will contact you within 30 minutes!');
-  };
+  // const handleCallbackSuccess = () => {
+  //   setShowCallbackForm(false);
+  //   setIsCallbackBlocked(true);
+  //   // Show success notification
+  //   alert('✅ Thank you! Your callback request has been submitted. We will contact you within 30 minutes!');
+  // };
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -88,7 +88,7 @@ const Footer = () => {
       // Add your subscription logic here
       console.log("Subscribed:", email);
       setEmail("");
-      alert("Thank you for subscribing! 🌞");
+      // alert("Thank you for subscribing! 🌞");
     }
   };
 
@@ -251,7 +251,7 @@ const Footer = () => {
               </div>
 
               {/* Request Callback Button */}
-              {!isCallbackBlocked ? (
+              {/* {!isCallbackBlocked ? (
                 <button
                   onClick={() => setShowCallbackForm(true)}
                   className="w-full bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-4 py-3 rounded-lg font-semibold text-sm shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2"
@@ -275,7 +275,7 @@ const Footer = () => {
                     )}
                   </div>
                 </div>
-              )}
+              )} */}
             </div>
 
             {/* Subscribe */}
@@ -360,13 +360,13 @@ const Footer = () => {
       </footer>
 
       {/* Callback Form Modal */}
-      {showCallbackForm && (
+      {/* {showCallbackForm && (
         <CallbackForm
           onClose={() => setShowCallbackForm(false)}
           onSuccess={handleCallbackSuccess}
           onCloseChatbox={() => { }} // No chatbox to close in footer
         />
-      )}
+      )} */}
     </>
   );
 };

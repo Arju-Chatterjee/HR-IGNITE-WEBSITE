@@ -1,7 +1,12 @@
 import Logo from "../Assets/logo.png";
 import { useEffect, useState } from "react";
 
-const Navbar: React.FC = () => {
+interface NavbarProps {
+  onBookNowClick?: () => void;
+  onContactClick?: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onBookNowClick, onContactClick }) => {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -17,7 +22,6 @@ const Navbar: React.FC = () => {
     { title: "benefits", submenu: ["Cost Saving", "Eco Friendly", "Government Subsidy"] },
     { title: "projects", submenu: ["Residential", "Commercial", "Industrial"] },
     { title: "products", submenu: ["Panels", "Inverters", "Accessories"] },
-    { title: "contact", submenu: ["Contact Form", "Locations", "Support"] },
   ];
 
   return (
@@ -27,7 +31,6 @@ const Navbar: React.FC = () => {
     >
       <nav className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-
           {/* LOGO */}
           <a href="/" className="flex items-center gap-3">
             <img src={Logo} alt="HR Ignite" className="h-9 w-auto object-contain" />
@@ -41,14 +44,12 @@ const Navbar: React.FC = () => {
             </div>
           </a>
 
-
           {/* DESKTOP MENU */}
           <div className="hidden md:flex items-center gap-8">
             {menuItems.map((item) => (
               <div key={item.title} className="relative group">
                 <button className="flex items-center gap-1 text-sm font-medium text-gray-700 hover:text-green-700 transition capitalize">
                   {item.title}
-                  {/* PROFESSIONAL SVG ARROW */}
                   {item.submenu.length > 0 && (
                     <svg
                       className="w-3 h-3 ml-1 transition-transform duration-300 group-hover:rotate-180"
@@ -62,7 +63,6 @@ const Navbar: React.FC = () => {
                   )}
                 </button>
 
-                {/* Submenu */}
                 {item.submenu.length > 0 && (
                   <div className="absolute left-0 top-full mt-2 w-52 rounded-xl bg-white shadow-lg border
                                   opacity-0 invisible group-hover:opacity-100 group-hover:visible
@@ -81,13 +81,23 @@ const Navbar: React.FC = () => {
               </div>
             ))}
 
-            {/* CTA */}
-            <a
-              href="https://wa.me/919714533858?text=Hi%2C%20I%20want%20solar%20installation%20details"
+            {/* Contact Us button */}
+            <button
+              type="button"
+              onClick={onContactClick}
+              className="text-sm font-medium text-gray-700 hover:text-green-700 transition"
+            >
+              Contact Us
+            </button>
+
+            {/* Book Now CTA */}
+            <button
+              type="button"
+              onClick={onBookNowClick}
               className="ml-4 bg-green-700 hover:bg-green-800 text-white px-5 py-2.5 rounded-md text-sm font-medium transition"
             >
               Book Now
-            </a>
+            </button>
           </div>
 
           {/* MOBILE BUTTON */}
@@ -124,12 +134,29 @@ const Navbar: React.FC = () => {
             </div>
           ))}
 
-          <a
-            href="https://wa.me/919714533858?text=Hi%2C%20I%20want%20solar%20installation%20details"
-            className="block bg-green-700 hover:bg-green-800 text-white text-center font-medium py-3 rounded-md transition"
+          {/* Mobile Contact Us */}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              onContactClick?.();
+            }}
+            className="block w-full border border-green-700 text-green-700 font-medium py-3 rounded-md transition hover:bg-green-50"
+          >
+            Contact Us
+          </button>
+
+          {/* Mobile Book Now */}
+          <button
+            type="button"
+            onClick={() => {
+              setOpen(false);
+              onBookNowClick?.();
+            }}
+            className="block w-full bg-green-700 hover:bg-green-800 text-white text-center font-medium py-3 rounded-md transition"
           >
             Book Now
-          </a>
+          </button>
         </div>
       </div>
     </header>
