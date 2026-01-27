@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { HfInference } from '@huggingface/inference';
 import { solarKnowledgeBase, getContextualAnswer, buildPromptContext, defaultResponse } from '../utils/solarKnowledgeBase';
+import emailjs from '@emailjs/browser';
+import CallbackForm from './CallbackForm';
 
 const AIChatbot = () => {
     type Message = {
@@ -8,9 +10,13 @@ const AIChatbot = () => {
         content: string;
         timestamp: Date;
         isWhatsAppPrompt?: boolean;
+        showCallbackButton?: boolean;
     };
 
     const [isOpen, setIsOpen] = useState(false);
+    const [showCallbackForm, setShowCallbackForm] = useState<boolean>(false);
+    const [isCallbackBlocked, setIsCallbackBlocked] = useState(false);
+    const [blockTimeRemaining, setBlockTimeRemaining] = useState<string>('');
     const [messages, setMessages] = useState<Message[]>([
         {
             role: 'bot',
@@ -59,11 +65,22 @@ const AIChatbot = () => {
         }, 300);
     };
 
-    const getAIResponse = async (userQuestion: string): Promise<string> => {
+    const handleCallbackSuccess = () => {
+        setShowCallbackForm(false);
+
+        const successMessage: Message = {
+            role: 'bot',
+            content: '✅ Thank you! Your callback request has been submitted successfully. We\'ve sent you a confirmation email and our team will contact you within 30 minutes! 🌞',
+            timestamp: new Date()
+        };
+        setMessages(prev => [...prev, successMessage]);
+    };
+
+    const getAIResponse = async (userQuestion: string): Promise<{ text: string; showCallback?: boolean }> => {
         const contextualAnswer = getContextualAnswer(userQuestion);
 
         if (contextualAnswer) {
-            return contextualAnswer;
+            return { text: contextualAnswer };
         }
 
         try {
@@ -88,12 +105,16 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                 }
             });
 
-            return response.generated_text.trim();
+            return { text: response.generated_text.trim() };
         } catch (error) {
             console.error('AI Error:', error);
-            return defaultResponse;
+            return {
+                text: defaultResponse,
+                showCallback: true
+            };
         }
     };
+
 
     const handleSend = async () => {
         if (!inputValue.trim() || questionCount >= MAX_QUESTIONS || isLoading) return;
@@ -115,8 +136,9 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
 
         const botResponse: Message = {
             role: 'bot',
-            content: aiResponse,
-            timestamp: new Date()
+            content: aiResponse.text,
+            timestamp: new Date(),
+            showCallbackButton: aiResponse.showCallback
         };
         setMessages(prev => [...prev, botResponse]);
         setIsLoading(false);
@@ -133,6 +155,7 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
             }, 1000);
         }
     };
+
 
     const handleKeyPress = (e) => {
         if (e.key === 'Enter' && !e.shiftKey) {
@@ -161,18 +184,65 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
         "Hi, I need help with my query regarding solar installation. I've been chatting with your AI assistant but need further assistance. Please connect with me as soon as possible. Thank you!"
     );
 
+    useEffect(() => {
+        const checkCallbackStatus = () => {
+            const callbackData = localStorage.getItem('solar_callback_requested');
+
+            if (callbackData) {
+                const parsed = JSON.parse(callbackData);
+                const currentTime = new Date().getTime();
+                const timeDifference = currentTime - parsed.timestamp;
+
+                // Block for 30 minutes (1800000 milliseconds)
+                const BLOCK_DURATION = 30 * 60 * 1000; // 30 minutes
+
+                if (timeDifference < BLOCK_DURATION) {
+                    setIsCallbackBlocked(true);
+
+                    // Calculate remaining time
+                    const remainingTime = BLOCK_DURATION - timeDifference;
+                    const minutes = Math.floor(remainingTime / 60000);
+                    const seconds = Math.floor((remainingTime % 60000) / 1000);
+                    setBlockTimeRemaining(`${minutes}m ${seconds}s`);
+                } else {
+                    // Time expired - clear data and enable button
+                    localStorage.removeItem('solar_callback_requested');
+                    setIsCallbackBlocked(false);
+                    setBlockTimeRemaining('');
+                }
+            }
+        };
+
+        // Check immediately on mount
+        checkCallbackStatus();
+
+        // Update every second to show countdown
+        const interval = setInterval(() => {
+            checkCallbackStatus();
+        }, 1000);
+
+        // Cleanup interval on unmount
+        return () => clearInterval(interval);
+    }, []);
+
+    useEffect(() => {
+        emailjs.init(import.meta.env.VITE_EMAILJS_PUBLIC_KEY);
+    }, []);
+
     return (
         <>
             {/* Floating Button */}
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-8 right-8 w-16 h-16 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center z-50 group hover:scale-110 animate-pulse hover:animate-none cursor-pointer"
+                className="fixed bottom-8 right-8 w-20 h-20 bg-green-600 hover:bg-green-700 text-white rounded-full shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col items-center justify-center z-50 group hover:scale-110 animate-pulse hover:animate-none cursor-pointer"
                 aria-label="Open AI chat"
             >
-                <svg className="w-7 h-7 mb-0.5 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-9 h-9 mb-1 group-hover:scale-110 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
-                <span className="text-[9px] font-semibold group-hover:text-green-100 transition-colors duration-300">AI Help</span>
+                <span className="text-[10px] font-bold leading-tight text-center group-hover:text-green-100 transition-colors duration-300">
+                    AI ChatBox
+                </span>
             </button>
 
             {isOpen && (
@@ -239,7 +309,7 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                                             <div className="flex items-start gap-3 mb-3">
                                                 <div className="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
                                                     <svg className="w-6 h-6 text-green-600" fill="currentColor" viewBox="0 0 24 24">
-                                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..."/>
+                                                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967..." />
                                                     </svg>
                                                 </div>
                                                 <div>
@@ -265,6 +335,55 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                                                 }`}>
                                                 <p className="text-sm leading-relaxed whitespace-pre-line">{message.content}</p>
                                             </div>
+                                            {/* Callback Button or Already Requested Message */}
+                                            {message.showCallbackButton && (
+                                                <>
+                                                    {!isCallbackBlocked ? (
+                                                        <button
+                                                            onClick={() => setShowCallbackForm(true)}
+                                                            className="mt-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors flex items-center gap-2"
+                                                        >
+                                                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                                                            </svg>
+                                                            Request Callback
+                                                        </button>
+                                                    ) : (
+                                                        <div className="mt-2 bg-gradient-to-r from-orange-50 to-yellow-50 border-2 border-orange-200 rounded-xl px-4 py-3 shadow-sm">
+                                                            <div className="flex items-start gap-3">
+                                                                <div className="flex-shrink-0 mt-0.5">
+                                                                    <svg className="w-5 h-5 text-orange-500" fill="currentColor" viewBox="0 0 20 20">
+                                                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
+                                                                    </svg>
+                                                                </div>
+                                                                <div className="flex-1">
+                                                                    <p className="font-bold text-orange-800 text-sm mb-1">✓ Already Requested for Call Back</p>
+                                                                    <p className="text-orange-700 text-xs leading-relaxed mb-2">
+                                                                        Please wait a bit. Our team will contact you soon!
+                                                                    </p>
+                                                                    <div className="flex items-center gap-2 bg-white rounded-lg px-3 py-2 border border-orange-200">
+                                                                        <svg className="w-4 h-4 text-orange-500 animate-spin" fill="none" viewBox="0 0 24 24">
+                                                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                                                        </svg>
+                                                                        <span className="text-xs font-semibold text-orange-600">
+                                                                            Available in: {blockTimeRemaining}
+                                                                        </span>
+                                                                    </div>
+                                                                    <p className="text-xs text-orange-600 mt-3 pt-2 border-t border-orange-200">
+                                                                        Need urgent help? Call us at{' '}
+                                                                        <a href="tel:+917005682736" className="underline font-bold hover:text-orange-800">
+                                                                            +91 70056 82736
+                                                                        </a>
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    )}
+                                                </>
+                                            )}
+
+
                                             <p className={`text-xs mt-1 ${message.role === 'user' ? 'text-right text-orange-600' : 'text-left text-green-400'}`}>
                                                 {message.timestamp.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
                                             </p>
@@ -330,6 +449,13 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                     </div>
                 </div>
             </div>
+            {showCallbackForm && (
+                <CallbackForm
+                    onClose={() => setShowCallbackForm(false)}
+                    onSuccess={handleCallbackSuccess}
+                    onCloseChatbox={handleClose}
+                />
+            )}
         </>
     );
 };

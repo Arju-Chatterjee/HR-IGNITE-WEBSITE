@@ -29,17 +29,17 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-16">
 
           {/* LOGO */}
-<a href="/" className="flex items-center gap-3">
-  <img src={Logo} alt="HR Ignite" className="h-9 w-auto object-contain" />
-  <div className="leading-tight">
-    <div className="text-green-700 font-semibold text-sm tracking-wide">
-      <span className="font-bold">HR IGNITE</span>
-    </div>
-    <div className="text-orange-400 font-semibold text-[11px]">
-      Innovative India Pvt. Ltd.
-    </div>
-  </div>
-</a>
+          <a href="/" className="flex items-center gap-3">
+            <img src={Logo} alt="HR Ignite" className="h-9 w-auto object-contain" />
+            <div className="leading-tight">
+              <div className="text-green-700 font-semibold text-sm tracking-wide">
+                <span className="font-bold">HR IGNITE</span>
+              </div>
+              <div className="text-orange-400 font-semibold text-[11px]">
+                Innovative India Pvt. Ltd.
+              </div>
+            </div>
+          </a>
 
 
           {/* DESKTOP MENU */}
