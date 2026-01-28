@@ -287,7 +287,7 @@ Provide a concise answer (max 80 words) based on the knowledge base. If the ques
                     <p className="text-xs text-orange-800">
                         {remainingQuestions > 0 ? (
                             <>
-                                <span className="font-semibold">{remainingQuestions}</span> question{remainingQuestions !== 1 ? 's' : ''} remaining this session
+                                <span className="font-semibold">{remainingQuestions}</span> chat{remainingQuestions !== 1 ? 's' : ''} remain in this session
                             </>
                         ) : (
                             <span className="font-semibold text-red-600">Question limit reached. Close and reopen to continue.</span>
