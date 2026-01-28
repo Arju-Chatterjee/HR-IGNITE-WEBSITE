@@ -28,9 +28,9 @@ const Homepage: React.FC = () => {
             <HeroSolar />
             <ProjectsSlider />
             <WorkProcess />
-            <main ref={systemCardsRef} className="py-2 sm:px-6 lg:px-8">
+            <div ref={systemCardsRef}>
                 <SystemCards />
-            </main>
+            </div>
             <div ref={contactRef}>
                 <ContactCTA />
             </div>

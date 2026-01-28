@@ -1,13 +1,22 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const UNIT_PER_KW = 120; // Average units per month
-const TARIFF = 6; // ₹ per unit
+// Avg monthly generation per kW (realistic India rooftop avg)
+const UNIT_PER_KW = 120;
+
+// TSECL Domestic Tariff FY 2024–25 (slab-based)
+const getTariff = (units) => {
+  if (units <= 50) return 4.71;
+  if (units <= 150) return 6.26;
+  if (units <= 300) return 7.12;
+  return 8.32;
+};
 
 const HeroSolar = () => {
   const [selectedKW, setSelectedKW] = useState(3);
   const [monthlySaving, setMonthlySaving] = useState(0);
-  const [showInfo, setShowInfo] = useState(false);
+  const [unitRate, setUnitRate] = useState(0);
+  const [unitsGenerated, setUnitsGenerated] = useState(0);
 
   const plans = Array.from({ length: 10 }, (_, i) => i + 1);
 
@@ -18,24 +27,30 @@ const HeroSolar = () => {
   ];
   const [currentPhrase, setCurrentPhrase] = useState(0);
 
-  // Rotate phrases every 5 seconds
+  // Rotate phrases
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentPhrase((prev) => (prev + 1) % rotatingPhrases.length);
-    }, 5000); // 5-second delay
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  const getSubsidy = (kw: number) => {
-    if (kw === 1) return 33000;
-    if (kw === 2) return 66000;
-    return 85800;
+  // Auto-calc on click
+  const calculateSaving = (kw) => {
+    const units = kw * UNIT_PER_KW;
+    const rate = getTariff(units);
+    const saving = units * rate;
+
+    setSelectedKW(kw);
+    setUnitsGenerated(units);
+    setUnitRate(rate);
+    setMonthlySaving(saving);
   };
 
-  const calculateSaving = () => {
-    setMonthlySaving(selectedKW * UNIT_PER_KW * TARIFF);
-    setShowInfo(false);
-  };
+  // initial calculation
+  useEffect(() => {
+    calculateSaving(selectedKW);
+  }, []);
 
   return (
     <section
@@ -45,7 +60,7 @@ const HeroSolar = () => {
           "url('https://images.unsplash.com/photo-1509391366360-2e959784a276')",
       }}
     >
-      {/* Dark overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-black/65" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-20">
@@ -81,8 +96,8 @@ const HeroSolar = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 1 }}
             >
-              Install government-approved rooftop solar systems and save on
-              electricity with long-term reliability and subsidy benefits.
+              Install government-approved rooftop solar systems and reduce your
+              electricity bills with long-term clean energy reliability.
             </motion.p>
 
             <motion.div
@@ -97,16 +112,14 @@ const HeroSolar = () => {
               </div>
               <div className="flex items-center gap-3 text-gray-200">
                 <span className="text-green-400">✔</span>
-                Subsidy up to ₹85,800
+                Real tariff-based savings
               </div>
             </motion.div>
 
-            {/* Quotation Button */}
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="mt-8 px-8 py-4 bg-green-700 hover:bg-green-800 rounded-xl font-bold text-lg text-white transition"
-              onClick={() => alert("Redirect to quotation form or popup")}
             >
               Get a Quotation
             </motion.button>
@@ -130,9 +143,11 @@ const HeroSolar = () => {
                 return (
                   <motion.button
                     key={kw}
-                    onClick={() => setSelectedKW(kw)}
+                    onClick={() => calculateSaving(kw)}
                     whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileTap={{ scale: 0.92 }}
+                    animate={active ? { scale: 1.08 } : { scale: 1 }}
+                    transition={{ type: "spring", stiffness: 300 }}
                     className={`rounded-xl p-4 text-center transition-all
                       ${active
                         ? "border-2 border-green-700 bg-green-50 shadow-lg"
@@ -141,64 +156,21 @@ const HeroSolar = () => {
                   >
                     <div className="font-bold text-gray-900">{kw} kW</div>
                     <div className="text-xs text-gray-600 mt-1">
-                      ₹{getSubsidy(kw).toLocaleString()}
+                      Est. Units: {kw * UNIT_PER_KW}/mo
                     </div>
                   </motion.button>
                 );
               })}
             </div>
 
-            {/* Button + Info */}
-            <div className="flex items-center gap-3">
-              <motion.button
-                onClick={calculateSaving}
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.95 }}
-                className="flex-1 bg-green-700 hover:bg-green-800 text-white py-4 rounded-xl font-bold text-lg transition"
-              >
-                Calculate Savings
-              </motion.button>
-
-              {/* Info button */}
-              <button
-                onClick={() => setShowInfo(!showInfo)}
-                className="w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-gray-700 hover:bg-gray-200 transition font-bold text-lg"
-              >
-                i
-              </button>
-            </div>
-
-            {/* Info Box */}
-            <AnimatePresence>
-              {showInfo && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="mt-4 bg-gray-50 p-4 rounded-xl border border-gray-200 text-gray-700 text-sm"
-                >
-                  <p>
-                    <strong>Calculation Breakdown:</strong>
-                  </p>
-                  <ul className="mt-2 list-disc list-inside space-y-1">
-                    <li>Selected System: {selectedKW} kW</li>
-                    <li>Average Units per Month: {selectedKW * UNIT_PER_KW} units</li>
-                    <li>Tariff Rate: ₹{TARIFF} per unit</li>
-                    <li>
-                      Monthly Savings: ₹{(selectedKW * UNIT_PER_KW * TARIFF).toLocaleString()}
-                    </li>
-                  </ul>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            {/* Result */}
+            {/* RESULT */}
             <AnimatePresence>
               {monthlySaving > 0 && (
                 <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5 }}
                   className="mt-8 bg-green-50 rounded-xl p-6 text-center shadow-md"
                 >
                   <div className="text-4xl font-extrabold text-green-700">
@@ -207,9 +179,21 @@ const HeroSolar = () => {
                   <p className="text-green-900 mt-1 font-medium">
                     Estimated Monthly Savings
                   </p>
+
+                  {/* Breakdown */}
+                  <div className="mt-4 bg-white rounded-lg p-4 text-sm text-gray-700 border">
+                    <div className="font-semibold mb-2">Calculation Breakdown</div>
+                    <ul className="space-y-1 text-left">
+                      <li>System Size: <b>{selectedKW} kW</b></li>
+                      <li>Units Generated: <b>{unitsGenerated} units/month</b></li>
+                      <li>Applicable Tariff: <b>₹{unitRate}/unit</b></li>
+                      <li>Formula: <b>{unitsGenerated} × {unitRate}</b></li>
+                    </ul>
+                  </div>
                 </motion.div>
               )}
             </AnimatePresence>
+
           </motion.div>
         </div>
       </div>
