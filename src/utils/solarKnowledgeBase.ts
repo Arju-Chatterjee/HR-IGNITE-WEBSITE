@@ -1,47 +1,99 @@
 export const solarKnowledgeBase = {
-  systemPrompt: `You are a helpful solar installation assistant for a company based in Agartala, Tripura, India. 
-Provide accurate, concise answers based on the knowledge base. Keep responses under 80 words. 
-Be friendly and professional. If you don't know something, recommend contacting the team directly.`,
+  systemPrompt: `You are Surya, a friendly solar energy assistant for HR Ignite Innovative India Pvt. Ltd., based in Agartala, Tripura. 
+Your role is to help customers understand solar energy, answer queries, and guide them toward solar adoption.
+
+Guidelines:
+- Keep responses conversational and under 60 words
+- Use emojis sparingly (1-2 per response)
+- Be warm, helpful, and professional
+- If uncertain, recommend calling +91 70056 82736
+- Always offer next steps (call, WhatsApp, site visit)
+- Use customer's context from conversation
+- Speak like a helpful friend, not a robot`,
 
   qaData: [
     {
       question: "Hello / Hi / Hey",
       answer:
-        "Hello! Welcome to our solar family! 🌞 I'm here to help you discover how solar energy can save you money and power your home with clean energy. What would you like to know about solar installation?",
+        "Hi there! 👋 I'm Surya, your solar assistant. I'm here to help you save money with clean energy! What would you like to know - subsidy benefits, system costs, or installation process?",
       keywords: [
         "hello",
-        "hi",
-        "hey",
+        "hi there",
+        "hey there",
         "namaste",
         "good morning",
         "good afternoon",
         "good evening",
-        "greetings",
+        "hii",
+        "helo",
       ],
     },
     {
       question: "How are you?",
       answer:
-        "I'm doing great, thank you for asking! 😊 I'm here and ready to help you with all your solar energy questions. How can I assist you today?",
-      keywords: ["how are you", "what's up", "whats up", "kaise ho", "how r u"],
+        "I'm doing great, thanks! ☀️ Ready to help you explore solar energy. Are you looking to reduce your electricity bills or curious about government subsidies?",
+      keywords: [
+        "how are you",
+        "what's up",
+        "whats up",
+        "wassup",
+        "kaise ho",
+        "how r u",
+        "how do you do",
+        "howdy",
+        "what up",
+        "how's it going",
+      ],
+    },
+    {
+      question: "Who are you?",
+      answer:
+        "I'm Surya, your AI solar assistant from HR Ignite! 🌞 I help people in Tripura go solar. I can answer questions about costs, subsidies, installation - or connect you with our experts!",
+      keywords: [
+        "who are you",
+        "what are you",
+        "your name",
+        "introduce yourself",
+        "who r u",
+        "what is your name",
+        "tell about yourself",
+      ],
     },
     {
       question: "Thank you",
       answer:
-        "You're most welcome! 🙏 Feel free to ask if you have any more questions. We're here to help you go solar! Have a bright day ahead!",
+        "You're most welcome! 🙏 Happy to help. Need anything else - subsidy info, pricing, or a free site visit? I'm here anytime!",
       keywords: [
         "thank you",
         "thanks",
         "thank u",
         "thanku",
+        "thnx",
+        "ty",
         "dhanyavaad",
         "shukriya",
+        "appreciate",
+        "grateful",
+      ],
+    },
+    {
+      question: "I want to talk to someone",
+      answer:
+        "Sure! Our solar experts are available 24x7. Call +91 70056 82736 or WhatsApp +91 9714533858. Want me to arrange a callback? Share your number!",
+      keywords: [
+        "talk to someone",
+        "speak to expert",
+        "human support",
+        "real person",
+        "customer service",
+        "representative",
+        "agent",
       ],
     },
     {
       question: "Can you arrange a callback?",
       answer:
-        "Absolutely! To save your time, you can directly call us at +91 70056 82736 or WhatsApp at +91 9714533858 for immediate assistance. We're available 24x7. Or share your number and we'll call you back within 30 minutes!",
+        "Absolutely! Call us directly at +91 70056 82736 (faster!) or share your number here and we'll call within 30 minutes. Which works better for you?",
       keywords: [
         "callback",
         "call back",
@@ -49,47 +101,189 @@ Be friendly and professional. If you don't know something, recommend contacting 
         "phone me",
         "contact me",
         "reach out",
+        "ring me",
+        "get back to me",
       ],
     },
     {
-      question: "I want to book a site visit",
+      question: "What is your contact number?",
       answer:
-        "Excellent! We offer FREE site surveys across Tripura. Call us at +91 70056 82736 or WhatsApp +91 9714533858 to schedule your visit. Our expert will come to your location at your convenience!",
+        "📞 Call: +91 70056 82736\n💬 WhatsApp: +91 9714533858\n\nWe're available 24x7! What questions can I help with before you call?",
       keywords: [
-        "site visit",
-        "survey",
-        "inspection",
-        "come to my place",
-        "visit my home",
+        "contact",
+        "phone",
+        "number",
+        "call",
+        "whatsapp",
+        "mobile",
+        "telephone",
+        "reach you",
+        "contact details",
+        "phone number",
       ],
     },
     {
       question: "What are your working hours?",
       answer:
-        "We provide 24x7 support! You can reach us anytime at +91 70056 82736 (call) or +91 9714533858 (WhatsApp). Our site visits are scheduled Monday to Saturday, 9 AM to 6 PM.",
+        "We're available 24x7 for queries! 🕐 Site visits are Mon-Sat, 9 AM - 6 PM. Call +91 70056 82736 anytime or schedule a FREE site survey!",
       keywords: [
         "working hours",
         "timing",
         "when open",
         "office time",
         "available when",
+        "open hours",
+        "schedule",
+        "business hours",
       ],
     },
     {
-      question: "Where is your office located?",
+      question: "Where is your office?",
       answer:
-        "We are based in Agartala, Tripura, and serve all areas across Tripura with doorstep service. Call +91 70056 82736 for our exact office address or to schedule a free home visit!",
+        "We're based in Agartala and serve all of Tripura! 📍 For exact office address or FREE home visit anywhere in Tripura, call +91 70056 82736.",
       keywords: [
         "office location",
         "address",
         "where are you",
         "office address",
+        "location",
+        "where located",
+        "based where",
       ],
     },
     {
-      question: "Do you provide EMI options?",
+      question: "What areas do you serve?",
       answer:
-        "Yes! We can help you explore financing and EMI options for solar installation. The system typically pays for itself in 3-5 years through electricity savings. Contact us at +91 70056 82736 for detailed EMI plans.",
+        "We cover entire Tripura - from Agartala to remote villages! 🚗 FREE site surveys anywhere. Cities, towns, rural areas - we reach everywhere. Where are you located?",
+      keywords: [
+        "service area",
+        "coverage",
+        "location",
+        "agartala",
+        "tripura",
+        "where",
+        "serve where",
+        "areas covered",
+        "villages",
+      ],
+    },
+    {
+      question: "What is PM Surya Ghar Yojana?",
+      answer:
+        "PM Surya Ghar is India's biggest rooftop solar scheme! 🏠 Get up to ₹78,000 subsidy + free electricity (300 units/month). Launched 2024, targets 1 crore homes by 2027. We handle everything!",
+      keywords: [
+        "pm surya ghar",
+        "muft bijli",
+        "surya ghar yojana",
+        "government scheme",
+        "modi scheme",
+        "solar scheme",
+        "free electricity scheme",
+      ],
+    },
+    {
+      question: "How much subsidy for 1kW?",
+      answer:
+        "₹30,000 subsidy for 1kW! 💰 System costs ~₹70,000, you pay only ~₹40,000 after subsidy. Saves ₹1,000/month. We handle all paperwork!",
+      keywords: ["1kw subsidy", "1 kw", "one kw subsidy", "subsidy 1kw"],
+    },
+    {
+      question: "How much subsidy for 2kW?",
+      answer:
+        "₹60,000 subsidy for 2kW! 💰 Net cost ~₹80,000 after subsidy. Saves ₹2,000/month. Perfect for medium homes. Want free site assessment?",
+      keywords: ["2kw subsidy", "2 kw", "two kw subsidy", "subsidy 2kw"],
+    },
+    {
+      question: "How much subsidy for 3kW?",
+      answer:
+        "₹78,000 subsidy for 3kW (maximum for residential)! 🎯 Our most popular size. Net cost ~₹1.4L, saves ₹3,000/month. ROI in 4 years!",
+      keywords: [
+        "3kw subsidy",
+        "3 kw",
+        "three kw subsidy",
+        "subsidy 3kw",
+        "maximum subsidy",
+      ],
+    },
+    {
+      question: "Subsidy for systems above 3kW?",
+      answer:
+        "₹78,000 subsidy for 4kW, 5kW, 10kW (capped at 3kW level). Higher systems = more savings but same subsidy. Still highly profitable! Let's calculate your ROI?",
+      keywords: [
+        "4kw subsidy",
+        "5kw subsidy",
+        "10kw subsidy",
+        "above 3kw",
+        "more than 3kw",
+      ],
+    },
+    {
+      question: "Am I eligible for subsidy?",
+      answer:
+        "You're eligible if: Indian citizen ✅ Own house ✅ Valid electricity connection ✅ Haven't taken solar subsidy before ✅. We verify during FREE site visit!",
+      keywords: [
+        "eligible",
+        "eligibility",
+        "can i get",
+        "qualify",
+        "who can apply",
+        "eligible for subsidy",
+        "subsidy eligibility",
+      ],
+    },
+    {
+      question: "How to apply for subsidy?",
+      answer:
+        "Don't worry - WE HANDLE IT ALL! 📝 Registration → Documentation → Installation → Subsidy application → Follow-up. You just sign papers. Money comes directly to your bank in 30-60 days!",
+      keywords: [
+        "apply subsidy",
+        "subsidy application",
+        "how to apply",
+        "subsidy process",
+        "apply for subsidy",
+        "get subsidy",
+      ],
+    },
+    {
+      question: "What is 1kW system cost?",
+      answer:
+        "1kW costs ₹70,000 before subsidy, ₹40,000 after ₹30k subsidy. Generates 4-5 units daily, saves ₹1,000/month. Call +91 70056 82736 for exact quote!",
+      keywords: [
+        "1kw cost",
+        "1kw price",
+        "1 kw price",
+        "how much 1kw",
+        "1kw system cost",
+      ],
+    },
+    {
+      question: "What is 3kW system cost?",
+      answer:
+        "3kW costs ₹2.1L before subsidy, ₹1.3L after ₹78k subsidy. 🏆 Most popular! Generates 12-15 units daily, saves ₹3,000/month. Want detailed breakdown?",
+      keywords: [
+        "3kw cost",
+        "3kw price",
+        "3 kw price",
+        "how much 3kw",
+        "3kw system cost",
+      ],
+    },
+    {
+      question: "What is 5kW system cost?",
+      answer:
+        "5kW costs ₹3.1L before subsidy, ₹2.3L after ₹78k subsidy. Perfect for large homes with AC. Saves ₹5,000/month. FREE site survey to confirm sizing!",
+      keywords: [
+        "5kw cost",
+        "5kw price",
+        "5 kw price",
+        "how much 5kw",
+        "5kw system cost",
+      ],
+    },
+    {
+      question: "Do you offer EMI?",
+      answer:
+        "Yes! Banks offer solar loans at 8-11% interest. 💳 We assist with applications. Monthly EMI often LESS than electricity bill savings. Smart investment!",
       keywords: [
         "emi",
         "loan",
@@ -97,432 +291,374 @@ Be friendly and professional. If you don't know something, recommend contacting 
         "installment",
         "payment plan",
         "easy payment",
+        "financing",
+        "pay in installments",
       ],
     },
     {
-      question: "What is the subsidy for 1kW solar system?",
+      question: "Any hidden costs?",
       answer:
-        "Under PM Surya Ghar scheme, you get ₹30,000 subsidy for a 1kW solar system. We handle all subsidy paperwork for you!",
-      keywords: ["1kw", "subsidy", "1 kw", "one kw"],
-    },
-    {
-      question: "What is the subsidy for 2kW solar system?",
-      answer:
-        "You can get ₹60,000 subsidy for a 2kW system under PM Surya Ghar Yojana in Tripura. We process the complete subsidy application.",
-      keywords: ["2kw", "subsidy", "2 kw", "two kw"],
-    },
-    {
-      question: "What is the subsidy for 3kW solar system?",
-      answer:
-        "Under PM Surya Ghar scheme, you get ₹78,000 subsidy for a 3kW solar system in Tripura. This is the maximum subsidy amount available for residential systems.",
-      keywords: ["3kw", "subsidy", "3 kw", "three kw"],
-    },
-    {
-      question: "What is the subsidy for 5kW solar system?",
-      answer:
-        "For 5kW system, you receive ₹78,000 subsidy. The subsidy is capped at 3kW level, so systems above 3kW get the same ₹78,000 subsidy amount.",
-      keywords: ["5kw", "subsidy", "5 kw", "five kw"],
-    },
-    {
-      question: "What is PM Surya Ghar Yojana?",
-      answer:
-        "PM Surya Ghar: Muft Bijli Yojana is India's largest domestic rooftop solar scheme launched in 2024. It provides subsidies up to ₹78,000 and aims to provide free electricity (up to 300 units/month) to 1 crore households by March 2027. We are MNRE approved vendors under this scheme.",
+        "NO hidden costs! 💯 Our quote includes: panels, inverter, mounting, wiring, installation, net metering, subsidy processing. Completely transparent pricing!",
       keywords: [
-        "pm surya ghar",
-        "muft bijli",
-        "surya ghar yojana",
-        "government scheme",
-        "modi scheme",
+        "hidden cost",
+        "extra charge",
+        "additional cost",
+        "total cost",
+        "hidden charges",
+        "other costs",
       ],
     },
     {
-      question: "What is MNRE?",
+      question: "How much can I save monthly?",
       answer:
-        "MNRE (Ministry of New and Renewable Energy) is the nodal agency for all renewable energy programs in India. We are MNRE-approved vendors, ensuring you get genuine products and guaranteed government subsidies.",
-      keywords: ["mnre", "ministry", "renewable energy ministry"],
+        "1kW saves ₹1k, 3kW saves ₹3k, 5kW saves ₹5k monthly! 💰 Annual savings: ₹36k to ₹96k. After 3-5 years, enjoy FREE electricity for 20+ years!",
+      keywords: [
+        "save",
+        "savings",
+        "monthly savings",
+        "electricity bill",
+        "bill reduction",
+        "how much save",
+        "save money",
+      ],
     },
     {
-      question: "Am I eligible for solar subsidy?",
+      question: "What is the ROI?",
       answer:
-        "You're eligible if you: 1) Are an Indian citizen, 2) Own a house with suitable roof, 3) Have valid electricity connection, 4) Haven't availed other solar subsidies. We'll verify your eligibility during free site survey!",
+        "Systems pay back in 3-5 years through electricity savings! 📈 After that, 20+ years of FREE power. ROI better than FD/SIP (18-22% annually). Smart investment!",
       keywords: [
-        "eligible",
-        "eligibility",
-        "can i get",
-        "qualify",
-        "who can apply",
+        "roi",
+        "return",
+        "payback",
+        "investment",
+        "break even",
+        "return on investment",
+        "payback period",
+      ],
+    },
+    {
+      question: "Will solar increase property value?",
+      answer:
+        "Yes! Solar homes sell 3-4% higher and 20% faster. 🏡 Buyers love lower bills. It's a premium amenity. Your investment saves money AND increases property value!",
+      keywords: [
+        "property value",
+        "home value",
+        "resale value",
+        "increase value",
+        "house value",
+        "property price",
       ],
     },
     {
       question: "How does net metering work?",
       answer:
-        "Net metering allows you to export excess solar power to the grid and get credits on your electricity bill. When your panels produce more than you use, the surplus goes to the grid. At night, you use grid power offset by these credits. We handle all net metering paperwork!",
+        "Excess solar power goes to grid → you get credits. At night, use grid power → credits offset cost. 🔄 Result: Dramatically lower bills! We handle all net metering paperwork.",
       keywords: [
         "net metering",
         "metering",
         "excess electricity",
         "grid connection",
         "export power",
+        "sell electricity",
+        "grid tied",
       ],
     },
     {
-      question: "What documents are needed for subsidy?",
+      question: "How much roof space needed?",
       answer:
-        "Required documents: Aadhaar card, electricity bill, property documents, bank account details, and passport-size photos. Don't worry - we'll guide you through the entire documentation process and handle submissions!",
+        "~100 sq ft per kW. So 3kW needs 300 sq ft, 5kW needs 500 sq ft. 📏 Our FREE site survey measures and optimizes your available space!",
       keywords: [
-        "documents",
-        "papers",
-        "requirement",
-        "needed documents",
-        "documents required",
+        "roof space",
+        "area needed",
+        "space required",
+        "how much space",
+        "roof area",
+        "space requirement",
       ],
     },
     {
-      question: "How long does installation take?",
+      question: "What about cloudy or rainy days?",
       answer:
-        "We complete installation within 15 days of site approval and documentation. This includes panel mounting, inverter setup, wiring, and net metering application.",
+        "Panels work at 10-25% efficiency on cloudy days. ☁️ You stay grid-connected, so power never stops. Plus, excess sunny-day generation balances through net metering!",
       keywords: [
-        "installation time",
-        "how long",
-        "duration",
-        "days",
-        "time taken",
+        "cloudy",
+        "rain",
+        "weather",
+        "monsoon",
+        "overcast",
+        "rainy days",
+        "bad weather",
       ],
     },
     {
-      question: "What warranty do you provide?",
+      question: "Do panels work at night?",
       answer:
-        "We provide a comprehensive 27-year warranty covering solar panels, inverters, mounting structures, and workmanship. This is one of the longest warranties in the industry!",
-      keywords: ["warranty", "guarantee", "coverage", "protection"],
-    },
-    {
-      question: "What areas do you serve?",
-      answer:
-        "We serve all areas in Agartala and throughout Tripura with doorstep service. We provide free site surveys anywhere in Tripura, from cities to remote villages.",
+        "No, panels need sunlight. 🌙 At night you use grid power, offset by day's excess via net metering. Want backup? We can add battery storage!",
       keywords: [
-        "service area",
-        "location",
-        "agartala",
-        "tripura",
-        "where",
-        "coverage area",
+        "night",
+        "nighttime",
+        "after sunset",
+        "evening",
+        "dark",
+        "night time",
+        "work at night",
       ],
     },
     {
-      question: "What is the cost of 1kW solar system?",
+      question: "Will it work during power cuts?",
       answer:
-        "After ₹30,000 subsidy, a 1kW system costs approximately ₹40,000 to ₹50,000. Final price depends on component quality. Call +91 70056 82736 for exact quote after free site survey.",
-      keywords: ["1kw cost", "1kw price", "1 kw price"],
-    },
-    {
-      question: "What is the cost of 2kW solar system?",
-      answer:
-        "After ₹60,000 subsidy, a 2kW system costs approximately ₹80,000 to ₹1,00,000. Contact us for detailed pricing based on your specific requirements.",
-      keywords: ["2kw cost", "2kw price", "2 kw price"],
-    },
-    {
-      question: "What is the cost of 3kW solar system?",
-      answer:
-        "After ₹78,000 subsidy, a 3kW system costs approximately ₹1,20,000 to ₹1,50,000 depending on component quality. This is our most popular residential size. Contact us for exact pricing!",
-      keywords: ["3kw cost", "3kw price", "how much", "3 kw price"],
-    },
-    {
-      question: "What is the cost of 5kW solar system?",
-      answer:
-        "After ₹78,000 subsidy, a 5kW system costs approximately ₹2,00,000 to ₹2,50,000. Ideal for larger homes. We provide detailed quotes after free site survey.",
-      keywords: ["5kw cost", "5kw price", "5 kw price"],
-    },
-    {
-      question: "How much can I save on electricity bills?",
-      answer:
-        "A 3kW system saves ₹3,000-5,000 monthly. A 5kW system saves ₹5,000-8,000 monthly. You can potentially reach ₹0 electricity bills! Annual savings can be ₹36,000 to ₹96,000.",
-      keywords: [
-        "save",
-        "savings",
-        "electricity bill",
-        "monthly savings",
-        "bill reduction",
-      ],
-    },
-    {
-      question: "What is your contact number?",
-      answer:
-        "Call us at +91 70056 82736 or WhatsApp at +91 9714533858. We're available 24x7 for all your queries and support!",
-      keywords: ["contact", "phone", "number", "call", "whatsapp", "mobile"],
-    },
-    {
-      question: "Do you offer free site survey?",
-      answer:
-        "Yes! We provide completely free site surveys with no obligation anywhere in Tripura. Our solar expert will visit your location, assess your roof, check shading, and provide customized recommendations. Book now: +91 70056 82736",
-      keywords: [
-        "site survey",
-        "free survey",
-        "visit",
-        "inspection",
-        "roof check",
-      ],
-    },
-    {
-      question: "What brands do you use?",
-      answer:
-        "We use only premium MNRE-approved and PM Surya Ghar certified brands including Tier-1 solar panels, high-efficiency inverters, and galvanized mounting structures for maximum efficiency and 25+ year lifespan.",
-      keywords: ["brands", "components", "quality", "equipment", "products"],
-    },
-    {
-      question: "How do I get started?",
-      answer:
-        "Getting started is easy! Call us at +91 70056 82736 or WhatsApp +91 9714533858. We'll schedule a FREE site visit, assess your needs, provide a quote, handle all paperwork, and install your system within 15 days!",
-      keywords: ["get started", "begin", "start", "how to", "process", "steps"],
-    },
-    {
-      question: "Are you MNRE approved?",
-      answer:
-        "Yes! We are officially MNRE-approved vendors and authorized under PM Surya Ghar scheme. This ensures you get genuine subsidies, quality components, and full government benefits.",
-      keywords: ["mnre", "approved", "certified", "authorized", "registered"],
-    },
-    {
-      question: "What maintenance is required?",
-      answer:
-        "Solar panels need minimal maintenance - just occasional cleaning (2-3 times yearly) to remove dust. We provide maintenance support throughout the 27-year warranty period. Annual checkups recommended.",
-      keywords: ["maintenance", "care", "cleaning", "upkeep", "service"],
-    },
-    {
-      question: "What is the ROI period?",
-      answer:
-        "Most systems pay for themselves in 3-5 years through electricity savings. After that, you enjoy FREE power for 20+ years! With ₹50,000-96,000 annual savings, ROI is excellent.",
-      keywords: ["roi", "return", "payback", "investment", "break even"],
-    },
-    {
-      question: "Can I install solar on a small roof?",
-      answer:
-        "Yes! Even small roofs (100-150 sq ft) can accommodate 1-2kW systems. Our experts will assess your roof space, shading, and orientation during the FREE site survey to maximize your solar potential.",
-      keywords: ["small roof", "roof size", "space", "area", "limited space"],
-    },
-    {
-      question: "What happens on cloudy or rainy days?",
-      answer:
-        "Solar panels work on cloudy days but at 10-25% reduced efficiency. You remain connected to the grid, so power supply is never interrupted. Excess power generated on sunny days is credited via net metering!",
-      keywords: ["cloudy", "rain", "weather", "monsoon", "overcast"],
-    },
-    {
-      question: "What is the lifespan of solar panels?",
-      answer:
-        "Solar panels last 25-30 years with minimal degradation (0.5-0.8% yearly). After 25 years, panels still produce 80-85% power. Our 27-year warranty ensures long-term performance and peace of mind.",
-      keywords: ["lifespan", "life", "duration", "how long last", "durability"],
-    },
-    {
-      question: "Do I need battery backup?",
-      answer:
-        "Battery backup is optional for grid-connected systems. Most homes don't need batteries as you stay connected to the grid. Batteries are recommended for areas with frequent power cuts. We'll assess during site visit!",
-      keywords: [
-        "battery",
-        "backup",
-        "storage",
-        "power backup",
-        "inverter battery",
-      ],
-    },
-    {
-      question: "Can I sell excess electricity?",
-      answer:
-        "Yes! Through net metering, you export excess solar power to the grid and receive credits on your electricity bill. This maximizes your savings, especially during high-production months!",
-      keywords: ["sell", "excess", "export", "grid", "sell power"],
-    },
-    {
-      question: "Will solar work during power cuts?",
-      answer:
-        "Standard grid-tied systems shut off during power cuts for safety. If you need backup during outages, we can install a hybrid system with battery storage. Discuss your needs during free site survey!",
+        "Standard systems shut off during cuts (safety). For backup, we offer hybrid systems with batteries. 🔋 Discuss your needs - we'll recommend best solution!",
       keywords: [
         "power cut",
         "outage",
         "load shedding",
         "blackout",
         "no electricity",
+        "power failure",
+        "electricity cut",
       ],
     },
     {
-      question: "How much roof space is needed?",
+      question: "What is panel lifespan?",
       answer:
-        "Approximately 100 sq ft per kW. So 1kW needs ~100 sq ft, 3kW needs ~300 sq ft, 5kW needs ~500 sq ft. Our team will measure and optimize your available roof space during FREE site visit.",
+        "Panels last 25-30 years! After 25 years, still produce 80-85% power. ⏳ Our 27-year warranty (longest in industry) covers everything. Worry-free for decades!",
       keywords: [
-        "roof space",
-        "area needed",
-        "space required",
-        "how much space",
+        "lifespan",
+        "life",
+        "duration",
+        "how long last",
+        "durability",
+        "panel life",
+        "last how long",
       ],
     },
     {
-      question: "Is solar worth it in Tripura?",
+      question: "What maintenance required?",
       answer:
-        "Absolutely! Tripura receives excellent sunlight (4.5-5.5 hours daily average). With ₹78,000 subsidy, rising electricity rates, and 27-year warranty, solar is highly profitable. Systems pay back in 3-5 years!",
+        "Minimal! Just occasional cleaning (2-3 times/year) to remove dust. 🧹 We provide maintenance throughout 27-year warranty. Very low effort, high rewards!",
       keywords: [
-        "worth it",
-        "tripura",
-        "profitable",
-        "good investment",
-        "should i install",
+        "maintenance",
+        "care",
+        "cleaning",
+        "upkeep",
+        "service",
+        "maintain",
+        "clean panels",
       ],
     },
     {
-      question: "What about monsoon season?",
+      question: "How long does installation take?",
       answer:
-        "Solar panels work year-round! During monsoon, production reduces but doesn't stop. Annual production averages out. Plus, rain naturally cleans your panels! Net metering balances seasonal variations.",
-      keywords: ["monsoon", "rainy season", "rain", "wet season"],
-    },
-    {
-      question: "How long does subsidy approval take?",
-      answer:
-        "Subsidy approval typically takes 30-60 days after installation and documentation submission. We handle the entire process and follow up with authorities. You'll receive subsidy directly in your bank account!",
+        "Installation completes in 15 days after approval! ⚡ Includes: panel mounting, inverter setup, wiring, net metering application. Quick and professional!",
       keywords: [
-        "subsidy approval",
-        "how long subsidy",
-        "subsidy time",
-        "when subsidy",
+        "installation time",
+        "how long",
+        "duration",
+        "days",
+        "time taken",
+        "how many days",
+        "installation duration",
       ],
     },
     {
-      question: "Can I expand my system later?",
+      question: "Do you offer free site survey?",
       answer:
-        "Yes! You can add more panels later, but subsidy is available only for the first installation. Plan your capacity needs carefully. We'll help you choose the right size during free consultation!",
-      keywords: ["expand", "add more", "increase capacity", "upgrade"],
-    },
-    {
-      question: "What about property tax benefits?",
-      answer:
-        "Many states offer property tax exemptions or rebates for solar installations. Check with local municipal authorities. We'll provide all installation certificates needed for claiming benefits.",
-      keywords: ["property tax", "tax benefit", "tax exemption", "tax rebate"],
-    },
-    {
-      question: "Do panels work in extreme heat?",
-      answer:
-        "Yes! Solar panels are designed for Indian conditions and work efficiently in heat. In fact, Tripura's climate is ideal. Panels are tested for temperatures up to 85°C. Performance guaranteed!",
-      keywords: ["heat", "hot weather", "temperature", "summer"],
-    },
-    {
-      question: "Is there any hidden cost?",
-      answer:
-        "No hidden costs! Our quote includes panels, inverter, mounting, wiring, installation, net metering application, and subsidy processing. You only pay after installation completion. Transparent pricing guaranteed!",
+        "Yes! Completely FREE site surveys with zero obligation, anywhere in Tripura! 🚗 We assess roof, check shading, provide customized recommendations. Book now: +91 70056 82736",
       keywords: [
-        "hidden cost",
-        "extra charge",
-        "additional cost",
-        "total cost",
+        "site survey",
+        "free survey",
+        "visit",
+        "inspection",
+        "roof check",
+        "site visit",
+        "free visit",
       ],
     },
     {
-      question: "What if I sell my house?",
+      question: "What documents needed?",
       answer:
-        "Solar systems increase property value by 3-4%! The system transfers with the property. New owners enjoy continued electricity savings. Solar homes sell faster and at premium prices!",
-      keywords: ["sell house", "property sale", "moving house", "transfer"],
-    },
-    {
-      question: "How do I monitor my system?",
-      answer:
-        "We provide mobile app-based monitoring! Track real-time generation, consumption, savings, and system health from your smartphone. Get alerts for any issues. 24x7 remote monitoring available.",
+        "Aadhaar, electricity bill, property docs, bank details, photos. 📄 Don't worry - we guide you through everything and handle all submissions!",
       keywords: [
-        "monitor",
-        "app",
-        "tracking",
-        "check generation",
-        "performance",
+        "documents",
+        "papers",
+        "requirement",
+        "needed documents",
+        "documents required",
+        "what documents",
+        "document list",
       ],
     },
     {
-      question: "What if panels get damaged?",
+      question: "What warranty do you provide?",
       answer:
-        "Our 27-year comprehensive warranty covers panel damage, manufacturing defects, and performance issues. We also recommend insurance for natural calamities. Quick replacement and repair support available!",
-      keywords: ["damage", "broken", "cracked", "hail", "storm damage"],
+        "27-year comprehensive warranty! 🛡️ Covers: panels (27yr), inverter (10yr), structure (lifetime), workmanship. Longest in the industry. Complete peace of mind!",
+      keywords: [
+        "warranty",
+        "guarantee",
+        "coverage",
+        "protection",
+        "warrantee",
+      ],
     },
     {
-      question: "Can I install on tin/asbestos roof?",
+      question: "Do you have after-sales service?",
       answer:
-        "Yes! We install on all roof types - concrete, tin, asbestos, tile. Our engineering team designs custom mounting solutions for each roof type. Free structural assessment during site visit!",
+        "Absolutely! 24x7 support, remote monitoring, annual maintenance, quick issue resolution. 🔧 We're with you for entire 27-year warranty period!",
       keywords: [
-        "tin roof",
-        "asbestos",
-        "roof type",
-        "metal roof",
-        "tile roof",
+        "after sales",
+        "service",
+        "support",
+        "customer care",
+        "help after",
+        "after sales service",
+        "post installation",
       ],
     },
     {
       question: "Why choose you over others?",
       answer:
-        "✅ 27-year warranty (longest) ✅ FREE site survey ✅ 15-day installation ✅ Complete subsidy handling ✅ MNRE approved ✅ 24x7 support ✅ 353+ happy customers ✅ 500+ installations ✅ 5.0 Google rating ✅ Tripura's most trusted!",
+        "✅ 27yr warranty (longest) ✅ MNRE approved ✅ FREE surveys ✅ 15-day install ✅ Complete subsidy handling ✅ 24x7 support ✅ 500+ installations ✅ 5.0 rating ✅ Tripura's #1!",
       keywords: [
         "why choose",
         "why you",
         "advantage",
         "better than",
         "difference",
+        "why your company",
+        "what makes you better",
       ],
     },
     {
-      question: "I'm confused, what should I do?",
+      question: "Are you MNRE approved?",
       answer:
-        "No worries! Let's make it simple. Just call us at +91 70056 82736 or WhatsApp +91 9714533858. Our expert will visit FREE, assess your home, explain everything clearly, and provide a customized solution. Zero confusion, zero obligation!",
+        "Yes! Officially MNRE-approved and PM Surya Ghar authorized. ✅ This guarantees genuine products, confirmed subsidies, and full government benefits!",
       keywords: [
-        "confused",
-        "don't know",
-        "not sure",
-        "help me decide",
-        "what to do",
+        "mnre",
+        "approved",
+        "certified",
+        "authorized",
+        "registered",
+        "mnre approved",
+        "government approved",
       ],
     },
     {
-      question: "Tell me customer reviews",
+      question: "What brands do you use?",
       answer:
-        "We have 5.0 Google rating with 353+ happy customers and 500+ successful installations! Our customers love our quick service, transparent pricing, and lifetime support. Check our Google reviews or call +91 70056 82736 for customer references!",
+        "Premium MNRE-certified Tier-1 brands only! 🏆 High-efficiency panels, reliable inverters, galvanized structures. 25+ year guaranteed performance. Quality guaranteed!",
       keywords: [
-        "reviews",
-        "rating",
-        "testimonial",
-        "customer feedback",
-        "google review",
+        "brands",
+        "components",
+        "quality",
+        "equipment",
+        "products",
+        "which brands",
+        "panel brands",
       ],
     },
     {
-      question: "Will solar panels damage my roof?",
+      question: "Can I run AC on solar?",
       answer:
-        "No! Solar panels actually protect your roof from weather and UV damage. Our professional installation ensures no leaks or structural damage. The panels are lightweight and mounting is done on rafters, not roof surface.",
+        "Yes! 3kW runs 1 AC + appliances. 5kW easily powers 2-3 ACs. ❄️ We size system based on AC usage. FREE calculation during site survey!",
+      keywords: [
+        "air conditioner",
+        "ac",
+        "cooling",
+        "run ac",
+        "air conditioning",
+        "ac on solar",
+        "solar for ac",
+      ],
+    },
+    {
+      question: "Will panels damage my roof?",
+      answer:
+        "No! Panels actually PROTECT your roof from weather. 🏠 Professional mounting on rafters (not roof surface), zero leaks. Lightweight, safe, secure!",
       keywords: [
         "damage roof",
         "roof damage",
         "harm roof",
         "roof leak",
         "roof protection",
-        "effect roof",
-        "affect roof",
-        "roof effect",
-        "solar roof",
-        "roof impact",
-        "hurt roof",
-        "ruin roof",
-        "destroy roof",
-        "roof safe",
+        "will damage",
         "safe for roof",
-        "soler roof",
-        "solar effect",
-        "effect my roof",
-        "affect my roof",
       ],
     },
     {
-      question: "Do solar panels work in extreme heat?",
+      question: "Can I install on tin/metal roof?",
       answer:
-        "Solar panels need light, not heat! They work efficiently in all temperatures. While extreme heat slightly reduces efficiency (by 10-15%), Tripura's moderate climate is perfect for solar. Excess summer production balances through net metering.",
+        "Absolutely! We install on ALL roof types: RCC, tin, asbestos, tile, metal. 🔧 Custom mounting solutions for each. FREE structural assessment included!",
       keywords: [
-        "extreme heat",
-        "very hot",
-        "high temperature",
-        "summer heat",
-        "too hot",
+        "tin roof",
+        "metal roof",
+        "sheet roof",
+        "asbestos roof",
+        "roof type",
+        "different roof",
+        "tin sheet",
       ],
     },
     {
-      question: "Can solar panels withstand storms and hail?",
+      question: "Is solar worth it in Tripura?",
       answer:
-        "Yes! Our panels have tempered glass tested to withstand 25mm hailstones at 80 km/h. Mounting structures are engineered for 150 km/h wind speeds. Your system is built for all weather conditions!",
+        "100% YES! ☀️ Tripura gets excellent sunlight (4.5-5.5 hrs daily). With ₹78k subsidy + rising electricity rates, solar is highly profitable. 3-5 year payback!",
+      keywords: [
+        "worth it",
+        "tripura",
+        "profitable",
+        "good investment",
+        "should i install",
+        "worth in tripura",
+        "solar in tripura",
+      ],
+    },
+    {
+      question: "Do you have reviews?",
+      answer:
+        "5.0 ⭐ Google rating with 353+ happy customers! 500+ successful installations. Our customers love our service, transparency, and support. Check Google or call for references!",
+      keywords: [
+        "reviews",
+        "rating",
+        "testimonial",
+        "customer feedback",
+        "google review",
+        "ratings",
+        "customer reviews",
+      ],
+    },
+    {
+      question: "I'm confused",
+      answer:
+        "No worries! 😊 Let's simplify: Call +91 70056 82736. Our expert visits FREE, assesses your home, explains clearly, provides customized solution. Zero confusion, zero obligation!",
+      keywords: [
+        "confused",
+        "don't know",
+        "not sure",
+        "help me decide",
+        "what to do",
+        "don't understand",
+        "unclear",
+      ],
+    },
+    {
+      question: "How do I get started?",
+      answer:
+        "Easy! 📞 Call +91 70056 82736 or WhatsApp +91 9714533858 → FREE site visit → Customized quote → We handle paperwork → Installation in 15 days. Simple!",
+      keywords: [
+        "get started",
+        "begin",
+        "start",
+        "how to",
+        "process",
+        "steps",
+        "starting process",
+        "how to start",
+      ],
+    },
+    {
+      question: "What happens in storms?",
+      answer:
+        "Our panels withstand 25mm hail at 80 km/h + 150 km/h winds! 🌪️ Built for all weather. Tempered glass, engineered mounting. Your system is storm-proof!",
       keywords: [
         "storm",
         "hail",
@@ -530,333 +666,865 @@ Be friendly and professional. If you don't know something, recommend contacting 
         "strong wind",
         "weather proof",
         "durability",
+        "storm damage",
       ],
     },
     {
-      question: "What happens if a panel stops working?",
+      question: "Need battery backup?",
       answer:
-        "Our 27-year warranty covers this! If any panel fails, we replace it free. Each panel works independently, so one faulty panel won't affect others. We monitor system performance and proactively address issues.",
+        "Optional! Grid acts as your 'battery' via net metering. 🔋 Batteries needed only if frequent power cuts. We assess needs during site visit!",
       keywords: [
-        "panel failure",
-        "not working",
-        "stopped working",
-        "broken panel",
-        "faulty panel",
-      ],
-    },
-    {
-      question: "Can I run air conditioner on solar?",
-      answer:
-        "Absolutely! A 3kW system can run 1 AC plus normal appliances. A 5kW system can easily power 2-3 ACs with other loads. Size your system based on AC usage - we'll calculate during free site survey!",
-      keywords: [
-        "air conditioner",
-        "ac",
-        "cooling",
-        "run ac",
-        "air conditioning",
-      ],
-    },
-    {
-      question: "Do I need to clean panels myself?",
-      answer:
-        "No need! Rain naturally cleans panels. For dusty months, we recommend professional cleaning 2-3 times yearly. Our maintenance team provides cleaning service throughout warranty period. Simple water cleaning is safe.",
-      keywords: [
-        "cleaning",
-        "clean panels",
-        "wash panels",
-        "dust removal",
-        "panel cleaning",
-      ],
-    },
-    {
-      question: "Will panels work in winter or cold weather?",
-      answer:
-        "Yes! Solar panels actually perform BETTER in cold weather. They need light, not heat. Cold temperatures improve efficiency. Winter production might be slightly lower due to shorter days, but annual output is excellent!",
-      keywords: [
-        "winter",
-        "cold weather",
-        "cold",
-        "low temperature",
-        "december january",
-      ],
-    },
-    {
-      question: "Can I install solar if I have trees nearby?",
-      answer:
-        "Depends on shading! Partial shade reduces output significantly. Our experts assess shade patterns during FREE site survey using solar pathfinder. We'll recommend optimal panel placement or suggest tree trimming if needed.",
-      keywords: ["trees", "shade", "shadow", "shading", "nearby trees"],
-    },
-    {
-      question: "How much electricity does 1kW generate daily?",
-      answer:
-        "1kW system generates 4-5 units (kWh) per day in Tripura (average). That's 120-150 units monthly, worth ₹700-1,000 savings. Actual generation varies by season, weather, and panel orientation.",
-      keywords: [
-        "1kw generation",
-        "how much power",
-        "daily generation",
-        "electricity production",
-      ],
-    },
-    {
-      question: "What is the difference between on-grid and off-grid?",
-      answer:
-        "On-grid: Connected to electricity grid, uses net metering, no batteries needed, most common. Off-grid: Completely independent, needs batteries, works during power cuts, higher cost. We recommend on-grid with optional battery for Tripura!",
-      keywords: [
-        "on-grid",
-        "off-grid",
-        "difference",
-        "grid tied",
-        "standalone",
-      ],
-    },
-    {
-      question: "Can animals or monkeys damage the panels?",
-      answer:
-        "Panels have 4mm tempered glass - even monkeys jumping won't break them! Animals can't damage panels. Bird droppings reduce efficiency temporarily - easily cleaned. Our mounting prevents animal nesting underneath.",
-      keywords: [
-        "animals",
-        "monkeys",
-        "birds",
-        "damage by animals",
-        "wildlife",
-      ],
-    },
-    {
-      question: "Do I need batteries for solar?",
-      answer:
-        "Not mandatory for grid-tied systems! Grid acts as your 'battery' via net metering. Batteries are optional for backup during power cuts. If Tripura has frequent outages, we can add battery backup. Discuss needs during site visit!",
-      keywords: [
+        "battery",
+        "backup",
+        "storage",
+        "power backup",
         "need battery",
         "battery required",
-        "backup battery",
-        "power backup",
       ],
     },
     {
-      question: "How do I know if my roof is suitable?",
+      question: "Can I monitor system?",
       answer:
-        "Most roofs work! Requirements: 100 sq ft per kW, south-facing preferred, minimal shade, structurally sound. Our FREE site survey includes: shadow analysis, roof strength check, orientation measurement. We'll confirm suitability!",
+        "Yes! Mobile app shows real-time generation, consumption, savings, system health. 📱 Track from anywhere! Get alerts for issues. 24x7 remote monitoring!",
       keywords: [
-        "suitable roof",
-        "roof suitable",
-        "roof compatibility",
-        "right roof",
-      ],
-    },
-    {
-      question: "What if I have electricity load shedding?",
-      answer:
-        "Standard grid-tied systems shut off during outages for safety. For uninterrupted power, we offer hybrid systems with battery backup. Batteries store solar power for use during load shedding. Discuss your needs with us!",
-      keywords: [
-        "load shedding",
-        "power cut",
-        "outage",
-        "electricity cut",
-        "no power",
-      ],
-    },
-    {
-      question: "Can I install more panels later?",
-      answer:
-        "Yes, but subsidy applies only to first installation! Plan capacity carefully now. We help you size based on future needs too. Adding panels later is possible but without additional subsidy benefit.",
-      keywords: [
-        "add later",
-        "expand later",
-        "more panels",
-        "increase size",
-        "add more",
-      ],
-    },
-    {
-      question: "What is solar panel efficiency?",
-      answer:
-        "Efficiency is percentage of sunlight converted to electricity. We use 18-22% efficient panels (industry leading). Higher efficiency means more power from same space. Our premium panels maximize generation per sq ft!",
-      keywords: [
-        "efficiency",
-        "panel efficiency",
-        "conversion rate",
-        "performance",
-      ],
-    },
-    {
-      question: "Do panels produce power at night?",
-      answer:
-        "No, panels need sunlight. At night, you use grid power offset by day's excess production via net metering. If you need nighttime backup, we can add battery storage to your system.",
-      keywords: ["night", "nighttime", "after sunset", "evening", "dark"],
-    },
-    {
-      question:
-        "What is difference between monocrystalline and polycrystalline?",
-      answer:
-        "Monocrystalline: Black, 18-22% efficient, better performance, costlier. Polycrystalline: Blue, 15-17% efficient, budget-friendly. We use premium monocrystalline for maximum generation and longer life. Discuss options during consultation!",
-      keywords: [
-        "monocrystalline",
-        "polycrystalline",
-        "mono poly",
-        "panel types",
-        "difference",
-      ],
-    },
-    {
-      question: "How does solar reduce my carbon footprint?",
-      answer:
-        "3kW system offsets 3-4 tons CO2 annually - equivalent to planting 150 trees! Over 25 years, you prevent 75-100 tons CO2 emissions. Solar is clean, renewable, and helps fight climate change while saving money!",
-      keywords: [
-        "carbon footprint",
-        "environment",
-        "green energy",
-        "eco-friendly",
-        "pollution",
-      ],
-    },
-    {
-      question: "Can I get loan for solar installation?",
-      answer:
-        "Yes! Many banks offer solar loans at 8-11% interest. We assist with loan applications. With subsidy and loans, upfront cost reduces dramatically. Monthly EMI is often less than electricity bill savings!",
-      keywords: ["loan", "financing", "bank loan", "credit", "borrow money"],
-    },
-    {
-      question: "What is inverter and why is it needed?",
-      answer:
-        "Inverter converts DC power from panels to AC power for home use. It's the brain of your system! We use premium string inverters or micro-inverters with 10-year warranty, monitoring capability, and 97%+ efficiency.",
-      keywords: [
-        "inverter",
-        "converter",
-        "what is inverter",
-        "inverter function",
-      ],
-    },
-    {
-      question: "Will solar increase my property value?",
-      answer:
-        "Yes! Solar homes sell 3-4% higher and 20% faster. Buyers love lower electricity costs. Solar is seen as premium amenity. Your investment not only saves money but also increases property marketability!",
-      keywords: [
-        "property value",
-        "home value",
-        "resale value",
-        "increase value",
-      ],
-    },
-    {
-      question: "Can I install solar on metal/tin roof?",
-      answer:
-        "Absolutely! We install on all roof types: RCC, tin, asbestos, tile, metal. Each needs specific mounting solutions. Our engineers design custom installations preventing leaks and ensuring structural integrity. FREE assessment included!",
-      keywords: [
-        "tin roof",
-        "metal roof",
-        "sheet roof",
-        "asbestos roof",
-        "roof type",
-      ],
-    },
-    {
-      question: "What permits or approvals are needed?",
-      answer:
-        "We handle all permissions! Required: Net metering application, electricity board approval, structural safety certificate (for some areas). Don't worry - we manage entire approval process. You just sign documents!",
-      keywords: ["permission", "approval", "permit", "clearance", "noc"],
-    },
-    {
-      question: "How does panel tilt angle affect performance?",
-      answer:
-        "Optimal tilt for Tripura is 15-25 degrees (matching latitude). Proper tilt maximizes annual generation. Flat panels lose 10-15% efficiency. Our engineers calculate perfect angle during design for your location!",
-      keywords: [
-        "tilt angle",
-        "panel angle",
-        "slope",
-        "inclination",
-        "orientation",
-      ],
-    },
-    {
-      question: "Can I monitor my solar system on phone?",
-      answer:
-        "Yes! We provide mobile app for real-time monitoring. Track: live generation, daily/monthly production, savings, system health, panel-level performance. Get alerts for any issues. Monitor from anywhere, anytime!",
-      keywords: [
-        "mobile app",
-        "phone monitoring",
-        "track performance",
-        "monitor system",
+        "monitor",
         "app",
+        "tracking",
+        "check generation",
+        "performance",
+        "mobile app",
+        "monitoring system",
       ],
     },
     {
-      question: "What if electricity rates increase in future?",
+      question: "Bye / Goodbye",
       answer:
-        "Great news! Your savings INCREASE! Solar protects you from rising electricity rates. While grid prices rise 5-8% yearly, your solar generation cost stays fixed. Your investment becomes more valuable over time!",
+        "Take care! 👋 Remember: +91 70056 82736 for any questions. We're here 24x7. Ready to help you go solar anytime. Have a bright day! ☀️",
       keywords: [
-        "future rates",
-        "price increase",
-        "tariff hike",
-        "electricity cost rise",
+        "bye",
+        "goodbye",
+        "see you",
+        "later",
+        "take care",
+        "gotta go",
+        "talk later",
       ],
     },
     {
-      question: "Is solar safe during lightning?",
+      question: "What is the subsidy structure?",
       answer:
-        "Yes! All systems include lightning arrestors and earthing as per electrical safety codes. Panels are grounded. In 25+ years, lightning damage is extremely rare. Our installation meets all safety standards!",
+        "₹30,000/kW for first 2kW + ₹18,000/kW beyond 2kW. 💰 Max ₹78,000 (capped at 3kW). Example: 1kW=₹30k, 2kW=₹60k, 3kW+=₹78k. We maximize your benefit!",
       keywords: [
-        "lightning",
-        "thunderstorm",
-        "electrical safety",
-        "shock",
-        "safe",
+        "subsidy structure",
+        "how much subsidy",
+        "subsidy breakdown",
+        "subsidy calculation",
+        "subsidy per kw",
+        "subsidy details",
+        "how is subsidy calculated",
       ],
     },
     {
-      question: "Can I use solar for water heater?",
+      question: "When will I receive the subsidy?",
       answer:
-        "Yes! Solar water heaters are separate products. We can install both - solar panels for electricity AND solar water heaters. Combination maximizes savings! Discuss complete solar solutions with us.",
-      keywords: ["water heater", "hot water", "geyser", "water heating"],
-    },
-    {
-      question: "What happens to warranty if I shift house?",
-      answer:
-        "Warranty transfers with property! New owners enjoy remaining warranty period. Solar increases property value and selling speed. System continues generating savings for new owners. Win-win situation!",
-      keywords: ["transfer warranty", "shift house", "move house", "relocate"],
-    },
-    {
-      question: "Do you provide after-sales service?",
-      answer:
-        "Absolutely! 24x7 customer support, regular monitoring, annual maintenance visits, quick response for issues, replacement support for faulty components. We're with you for entire 27-year warranty period!",
+        "Subsidy credited within 30-60 days after installation inspection and commissioning certificate! 🏦 Direct Benefit Transfer (DBT) to your bank account. We track entire process!",
       keywords: [
-        "after sales",
-        "service",
-        "support",
+        "when subsidy",
+        "subsidy time",
+        "how long subsidy",
+        "subsidy disbursement",
+        "receive subsidy",
+        "subsidy payment",
+        "subsidy transfer time",
+      ],
+    },
+    {
+      question: "Is subsidy available for commercial properties?",
+      answer:
+        "No, PM Surya Ghar subsidy is ONLY for residential consumers. 🏠 Commercial/industrial get tax benefits instead. Housing societies up to 500kW eligible. Discuss your property type!",
+      keywords: [
+        "commercial subsidy",
+        "business subsidy",
+        "shop subsidy",
+        "office subsidy",
+        "commercial property",
+        "non residential",
+      ],
+    },
+    {
+      question: "What is CFA Central Financial Assistance?",
+      answer:
+        "CFA = Central Financial Assistance = Government Subsidy! 💵 MNRE provides this directly. It's 60% for first 2kW, 40% beyond, capped at ₹78k. Same as PM Surya Ghar subsidy!",
+      keywords: [
+        "cfa",
+        "central financial assistance",
+        "what is cfa",
+        "cfa subsidy",
+        "central assistance",
+        "government assistance",
+      ],
+    },
+    {
+      question: "Can housing societies get subsidy?",
+      answer:
+        "Yes! Housing societies/group housing can apply for up to 500kW capacity! 🏢 Individual homes in society also get subsidy. Both options available. We handle society installations!",
+      keywords: [
+        "housing society",
+        "apartment subsidy",
+        "society subsidy",
+        "group housing",
+        "flats",
+        "apartment complex",
+        "residential complex",
+      ],
+    },
+    {
+      question: "What is the target of PM Surya Ghar scheme?",
+      answer:
+        "1 crore households by March 2027! 🎯 Free electricity (300 units/month), 1,000 billion units renewable power, reduce 720 million tons CO2. Tripura targets 50,000 homes, 150 MW!",
+      keywords: [
+        "target",
+        "scheme target",
+        "goal",
+        "pm surya ghar target",
+        "how many homes",
+        "national target",
+        "scheme goal",
+      ],
+    },
+    {
+      question: "What is Tripura's solar target?",
+      answer:
+        "150 MW solar by March 2027! ⚡ 50,000 families targeted. So far 13,500+ registered, 266 installations done. 70 families already earning from selling surplus power! Join now!",
+      keywords: [
+        "tripura target",
+        "tripura solar",
+        "tripura goal",
+        "state target",
+        "tripura scheme",
+        "local target",
+      ],
+    },
+    {
+      question: "Can I earn by selling surplus electricity?",
+      answer:
+        "YES! Via net metering, surplus power sold to grid at APPC rate. 💸 70 families in Tripura already earned ₹30,902 avg! Your electricity bill can be ZERO + extra income!",
+      keywords: [
+        "sell electricity",
+        "earn from solar",
+        "surplus power",
+        "sell power",
+        "make money",
+        "income from solar",
+        "selling units",
+      ],
+    },
+    {
+      question: "What is APPC rate?",
+      answer:
+        "APPC = Average Power Purchase Cost. Rate at which DISCOM buys your surplus solar power. 💡 Varies yearly, typically ₹4-6/unit in Tripura. Net metering credits balance your bills!",
+      keywords: [
+        "appc",
+        "average power purchase cost",
+        "appc rate",
+        "selling rate",
+        "power purchase",
+        "unit rate",
+      ],
+    },
+    {
+      question: "What is TREDA?",
+      answer:
+        "TREDA = Tripura Renewable Energy Development Agency. 🏛️ State nodal agency implementing PM Surya Ghar in Tripura. They approve applications, coordinate with DISCOM. We work directly with TREDA!",
+      keywords: [
+        "treda",
+        "tripura renewable energy",
+        "what is treda",
+        "state agency",
+        "tripura agency",
+        "nodal agency",
+      ],
+    },
+    {
+      question: "What is DISCOM?",
+      answer:
+        "DISCOM = Distribution Company (TSECL in Tripura). ⚡ They supply electricity, approve net metering, inspect installations. We coordinate all DISCOM processes for you!",
+      keywords: [
+        "discom",
+        "distribution company",
+        "what is discom",
+        "tsecl",
+        "electricity company",
+        "power company",
+      ],
+    },
+    {
+      question: "Is there separate state subsidy in Tripura?",
+      answer:
+        "Currently, Tripura follows Central scheme (₹78k max). Some states like UP give extra state subsidy. 💰 Check with us - policies update! Central subsidy alone is excellent value!",
+      keywords: [
+        "state subsidy",
+        "tripura subsidy",
+        "additional subsidy",
+        "extra subsidy",
+        "state government subsidy",
+        "local subsidy",
+      ],
+    },
+    {
+      question: "What documents prove I received subsidy?",
+      answer:
+        "You get: Commissioning Certificate from DISCOM, Subsidy Credit Intimation, Bank Transfer Receipt. 📄 Keep these safe for records. We help with all documentation!",
+      keywords: [
+        "subsidy proof",
+        "documents",
+        "certificate",
+        "subsidy documents",
+        "proof of subsidy",
+        "commissioning certificate",
+      ],
+    },
+    {
+      question: "Can I apply subsidy myself without vendor?",
+      answer:
+        "No! Installation MUST be done by MNRE-empanelled vendors only. ❌ Self-installation not eligible for subsidy. Good news: We're approved vendors, handle everything A-Z!",
+      keywords: [
+        "self apply",
+        "apply myself",
+        "without vendor",
+        "diy installation",
+        "install myself",
+        "self installation",
+      ],
+    },
+    {
+      question: "What if my subsidy application is rejected?",
+      answer:
+        "Rare with us! Common reasons: wrong vendor, incomplete docs, ineligible property. 🔍 We PRE-VERIFY everything to prevent rejections. 500+ successful applications prove our expertise!",
+      keywords: [
+        "subsidy rejected",
+        "rejection",
+        "application rejected",
+        "denied subsidy",
+        "not approved",
+        "subsidy denied",
+      ],
+    },
+    {
+      question: "Is GST extra on subsidy amount?",
+      answer:
+        "GST applies on TOTAL system cost, but subsidy is POST-GST adjustment! 📊 Example: ₹2.1L system (with GST) - ₹78k subsidy = ₹1.32L net. We provide transparent pricing!",
+      keywords: [
+        "gst",
+        "tax",
+        "gst on subsidy",
+        "taxes",
+        "additional tax",
+        "gst extra",
+        "including gst",
+      ],
+    },
+    {
+      question: "Can I transfer my subsidy to someone else?",
+      answer:
+        "No! Subsidy is consumer-specific, linked to your electricity connection + Aadhaar. 🔒 Non-transferable. It goes to YOUR bank account only. Prevents misuse!",
+      keywords: [
+        "transfer subsidy",
+        "give subsidy",
+        "subsidy transfer",
+        "someone else",
+        "can transfer",
+        "transferable",
+      ],
+    },
+    {
+      question: "What is benchmark cost for subsidy?",
+      answer:
+        "Govt sets benchmark costs (₹50-60k/kW) to calculate subsidy. 💼 Your actual cost may vary based on quality/brand. Subsidy fixed regardless. We offer competitive pricing!",
+      keywords: [
+        "benchmark cost",
+        "benchmark",
+        "standard cost",
+        "base cost",
+        "reference cost",
+        "subsidy benchmark",
+      ],
+    },
+    {
+      question: "Is subsidy taxable income?",
+      answer:
+        "No! Solar subsidy is NOT taxable as per current Income Tax rules. 🎉 It's capital subsidy, not revenue. Enjoy full ₹78k benefit tax-free! (Consult CA for latest rules)",
+      keywords: [
+        "taxable",
+        "income tax",
+        "tax on subsidy",
+        "subsidy tax",
+        "pay tax",
+        "taxable subsidy",
+      ],
+    },
+    {
+      question: "What happens if I've already installed solar?",
+      answer:
+        "Past installations NOT eligible if done before scheme! ⏰ Only NEW installations post-registration qualify. Plan now to maximize benefits. Upgrading existing? Call us!",
+      keywords: [
+        "already installed",
+        "existing solar",
+        "old installation",
+        "past installation",
+        "already have",
+        "previously installed",
+      ],
+    },
+    {
+      question: "Can NRI apply for solar subsidy?",
+      answer:
+        "Yes, if property in your name + valid Indian electricity connection + Aadhaar. 🛂 Residential use only. We handle applications for NRIs. Remote coordination possible!",
+      keywords: [
+        "nri",
+        "non resident indian",
+        "overseas",
+        "foreign",
+        "abroad",
+        "nri subsidy",
+      ],
+    },
+    {
+      question: "Group net metering vs individual?",
+      answer:
+        "Individual: Each home separate system + meter. Group: Shared system (society/apartment) + distributed benefit. 🏘️ Both subsidy-eligible! We design optimal solution for you!",
+      keywords: [
+        "group net metering",
+        "individual metering",
+        "virtual net metering",
+        "shared solar",
+        "community solar",
+      ],
+    },
+    {
+      question: "What is virtual net metering?",
+      answer:
+        "Allows shared solar for apartments where individual rooftops not feasible! 🏢 Common rooftop system, benefits distributed. Subsidy eligible. Perfect for multi-story buildings!",
+      keywords: [
+        "virtual net metering",
+        "vnm",
+        "virtual metering",
+        "shared metering",
+        "apartment solar",
+        "common rooftop",
+      ],
+    },
+    {
+      question: "Is there a scheme deadline?",
+      answer:
+        "PM Surya Ghar extended till March 2026, may extend further! ⏳ But don't wait - limited approved vendors, rising demand. Apply NOW to lock benefits. First come, first served!",
+      keywords: [
+        "deadline",
+        "last date",
+        "scheme end",
+        "expiry",
+        "till when",
+        "time limit",
+        "validity",
+      ],
+    },
+    {
+      question: "What is the National Solar Portal?",
+      answer:
+        "pmsuryaghar.gov.in - Official portal for applications! 🌐 Single-window system for registration, vendor selection, tracking, subsidy. We guide you through entire portal process!",
+      keywords: [
+        "national portal",
+        "solar portal",
+        "pmsuryaghar",
+        "official website",
+        "government portal",
+        "online portal",
+      ],
+    },
+    {
+      question: "Can I check subsidy status online?",
+      answer:
+        "Yes! Login to pmsuryaghar.gov.in with consumer number. 📱 Track: Application → Feasibility → Installation → Inspection → Subsidy disbursed. Real-time updates. We monitor for you too!",
+      keywords: [
+        "check status",
+        "track subsidy",
+        "subsidy status",
+        "application status",
+        "track application",
+        "check online",
+      ],
+    },
+    {
+      question: "What is feasibility approval?",
+      answer:
+        "DISCOM checks if your location suitable for solar + grid connection. ✅ Usually approved within 7-15 days if connection valid. We ensure your application gets fast approval!",
+      keywords: [
+        "feasibility",
+        "feasibility approval",
+        "technical feasibility",
+        "discom approval",
+        "initial approval",
+      ],
+    },
+    {
+      question: "What if my electricity bill is in someone else's name?",
+      answer:
+        "Subsidy goes to electricity connection holder! 📋 If you own property but bill in tenant/previous owner name, transfer connection first. We guide through DISCOM procedures!",
+      keywords: [
+        "different name",
+        "someone else name",
+        "bill name",
+        "connection name",
+        "not my name",
+        "name mismatch",
+      ],
+    },
+    {
+      question: "Can I get subsidy for off-grid system?",
+      answer:
+        "No! Subsidy ONLY for grid-connected systems with net metering. 🔌 Off-grid (standalone) not eligible. Need backup? We recommend grid-tied + battery hybrid!",
+      keywords: [
+        "off grid",
+        "standalone",
+        "off grid subsidy",
+        "without grid",
+        "independent system",
+        "not connected",
+      ],
+    },
+    {
+      question: "What is the PM Surya Ghar helpline?",
+      answer:
+        "National Helpline: 1800-180-3333 or 1555 📞 For Tripura-specific help, call us directly: +91 70056 82736. We provide faster, personalized support than generic helpline!",
+      keywords: [
+        "helpline",
+        "toll free",
         "customer care",
-        "help after",
+        "pm surya ghar helpline",
+        "support number",
+        "help number",
       ],
     },
     {
-      question: "How to apply for PM Surya Ghar subsidy?",
+      question: "Explain PM Surya Ghar in simple language",
       answer:
-        "Simple! Register on pmsuryaghar.gov.in portal, submit documents, get approval, complete installation, apply for subsidy. Don't worry - WE HANDLE EVERYTHING! From registration to subsidy credit. Zero hassle for you!",
+        "PM Surya Ghar: Muft Bijli Yojana is a central government scheme that helps homeowners install rooftop solar at a discounted price. You get a big subsidy directly in your bank and can cut your electricity bill close to zero while using clean energy for 25+ years.",
       keywords: [
-        "apply subsidy",
-        "subsidy application",
-        "how to apply",
-        "subsidy process",
+        "explain pm surya ghar",
+        "surya ghar simple",
+        "muft bijli explain",
+        "scheme in simple language",
+        "surya ghar details",
+        "surya ghar info",
       ],
     },
     {
-      question: "What is the current electricity tariff in Tripura?",
+      question: "What are the main benefits of PM Surya Ghar?",
       answer:
-        "Residential tariffs in Tripura range from ₹5-8 per unit depending on consumption slab. Higher consumption = higher rates. Solar locks your cost at ₹3-4 per unit for 25 years. Huge savings!",
+        "Main benefits: big upfront subsidy on solar system, up to 300 units/month effectively free power, protection from future tariff hikes, direct subsidy credit in your bank, and increase in your property value. You also help reduce pollution and India’s dependence on fossil fuels.",
       keywords: [
-        "electricity rate",
-        "tariff",
-        "unit cost",
-        "electricity price tripura",
+        "benefits pm surya ghar",
+        "pm surya ghar advantages",
+        "why pm surya ghar",
+        "muft bijli benefits",
+        "scheme benefits",
       ],
     },
     {
-      question: "Can solar work with inverter battery?",
+      question: "Is PM Surya Ghar available in Tripura?",
       answer:
-        "Yes! We can integrate solar with your existing inverter system. Hybrid inverters allow seamless operation of solar + grid + battery. This gives you maximum flexibility and backup during outages.",
+        "Yes, PM Surya Ghar applies across India, including Tripura. Homeowners in Tripura can register on the national portal, select an approved vendor like us, install rooftop solar, and receive central subsidy directly. State-level policies may refine implementation, but the core subsidy remains the same.",
       keywords: [
-        "inverter battery",
-        "existing inverter",
-        "hybrid",
-        "with battery",
+        "tripura pm surya ghar",
+        "tripura surya ghar",
+        "tripura muft bijli",
+        "is scheme in tripura",
+        "surya ghar in tripura",
+        "tripura subsidy scheme",
+      ],
+    },
+    {
+      question: "Difference between old rooftop subsidy and PM Surya Ghar?",
+      answer:
+        "Earlier rooftop subsidies were routed through DISCOMs and state agencies with different rates and caps. PM Surya Ghar standardizes the structure across India, uses a central online portal, gives direct benefit transfer to your bank, and clearly defines slab-wise subsidy per kW up to a fixed limit.",
+      keywords: [
+        "old rooftop subsidy",
+        "difference old new subsidy",
+        "previous solar scheme",
+        "mnre old scheme",
+        "old vs pm surya ghar",
+      ],
+    },
+    {
+      question: "Can tenants apply for PM Surya Ghar subsidy?",
+      answer:
+        "Subsidy is tied to the electricity consumer and property. If you’re a tenant, normally the subsidy will go to the registered consumer/owner. In most cases, the property owner must agree and be the applicant. A clear written understanding between owner and tenant is strongly recommended before applying.",
+      keywords: [
+        "tenant subsidy",
+        "rented house subsidy",
+        "live on rent solar subsidy",
+        "tenant pm surya ghar",
+        "rent house scheme",
+        "renter subsidy",
+      ],
+    },
+    {
+      question: "Can I install solar on my ancestral house and get subsidy?",
+      answer:
+        "Yes, ancestral houses are eligible if the electricity connection, property documents, and Aadhaar details match the applicant as per portal rules. Multiple legal heirs must avoid duplicate claims on the same connection. We usually suggest clarifying ownership and electricity account name before starting the application.",
+      keywords: [
+        "ancestral house subsidy",
+        "father house subsidy",
+        "family house solar",
+        "old house subsidy",
+        "joint property subsidy",
+        "family property solar",
+      ],
+    },
+    {
+      question: "Can I get subsidy on more than one house?",
+      answer:
+        "PM Surya Ghar is meant for one residential connection per consumer. If you own multiple homes, normally subsidy is allowed only once against one eligible electricity connection. Attempting multiple subsidies under the same identity can lead to rejection or recovery by authorities later.",
+      keywords: [
+        "multiple houses subsidy",
+        "more than one house subsidy",
+        "two house subsidy",
+        "second home subsidy",
+        "double subsidy",
+      ],
+    },
+    {
+      question: "Can I shift my solar system to a new house and keep subsidy?",
+      answer:
+        "You can physically shift the system, but the original subsidy was sanctioned for that specific connection and site. Moving the system to another location without proper permission is not aligned with scheme intent and can cause warranty, approval, and future claim issues. Always consult us before shifting.",
+      keywords: [
+        "shift system new house",
+        "move solar",
+        "relocate system",
+        "shift house subsidy",
+        "move with solar",
+        "transfer system",
+      ],
+    },
+    {
+      question: "What happens if I increase load after installing solar?",
+      answer:
+        "You can apply for sanctioned load enhancement with the DISCOM even after going solar. Just remember: subsidy is based on system capacity and scheme norms at installation time, not on later load changes. If your usage rises a lot, we can discuss adding capacity (without extra subsidy) later.",
+      keywords: [
+        "increase load",
+        "sanctioned load change",
+        "more load after solar",
+        "load enhancement",
+        "increase connection load",
+        "higher load",
+      ],
+    },
+    {
+      question: "Can I upgrade my system size later under the same scheme?",
+      answer:
+        "You can technically add more panels and capacity later, but additional capacity usually won’t get fresh subsidy under PM Surya Ghar. The subsidy is considered one-time per connection. That’s why we carefully size your system in the beginning based on future usage and budget.",
+      keywords: [
+        "upgrade system later",
+        "increase kw later",
+        "add more panels later",
+        "expand system scheme",
+        "extension subsidy",
+        "upgrade under scheme",
+      ],
+    },
+    {
+      question: "Is there any penalty if I remove the system after subsidy?",
+      answer:
+        "The scheme expects the system to remain functional for a minimum period; removing it soon after taking subsidy can invite scrutiny and possible recovery. DISCOM and MNRE monitor generation data. Practically, because solar gives strong savings, almost nobody removes it once they see the benefits.",
+      keywords: [
+        "remove system after subsidy",
+        "take subsidy then remove",
+        "penalty remove solar",
+        "take money and remove",
+        "subsidy misuse",
+      ],
+    },
+    {
+      question: "How is PM Surya Ghar different from KUSUM scheme?",
+      answer:
+        "PM Surya Ghar focuses on residential rooftop systems and household bills. KUSUM mainly targets farmers and agricultural pumps with separate components and norms. If you’re a household consumer in Tripura, PM Surya Ghar is the relevant rooftop scheme for your home.",
+      keywords: [
+        "kusum vs surya ghar",
+        "difference kusum",
+        "farmer scheme solar",
+        "agriculture solar scheme",
+        "solar pump subsidy vs rooftop",
+      ],
+    },
+    {
+      question: "Do I need separate approval from the municipality?",
+      answer:
+        "In most typical residential rooftop cases, approvals are handled centrally via DISCOM and state nodal agencies. For special structures or large capacities, local body permissions may be required. We’ll tell you clearly if your building needs any extra structural or municipal clearance before we proceed.",
+      keywords: [
+        "municipality approval",
+        "permission from nagar nigam",
+        "local body permission",
+        "corporation approval",
+        "municipal clearance",
+      ],
+    },
+    {
+      question: "Will subsidy stop if government changes?",
+      answer:
+        "Schemes can evolve with time, but once your application is approved, installation is completed, and documents are submitted correctly, your subsidy is honoured as per then-prevailing rules. Waiting for politics to settle usually means losing months of savings you could already be earning.",
+      keywords: [
+        "government change",
+        "new government subsidy",
+        "politics affect subsidy",
+        "if gov changes",
+        "scheme after election",
+        "subsidy discontinued",
+      ],
+    },
+    {
+      question: "What if portal is not working or OTP not coming?",
+      answer:
+        "The national portal occasionally faces delays or OTP issues during peak traffic. In such cases we try again during off-peak hours, verify your mobile/email, and sometimes switch browser or network. If problems continue, we coordinate with helplines and keep you updated instead of leaving you stuck.",
+      keywords: [
+        "portal error",
+        "otp not received",
+        "website not working",
+        "unable to login portal",
+        "pm surya ghar portal problem",
+      ],
+    },
+    {
+      question: "Can I apply without Aadhaar linking?",
+      answer:
+        "Aadhaar is central to KYC and direct transfer in PM Surya Ghar, so linking is effectively mandatory. Name, address and bank details must be consistent with your identity documents. If anything is mismatched, we usually fix KYC first to avoid subsidy getting delayed or blocked later.",
+      keywords: [
+        "aadhaar mandatory",
+        "without aadhaar subsidy",
+        "aadhaar linking",
+        "aadhaar seeding",
+        "aadhar not linked bank",
+        "kyc problem",
+      ],
+    },
+    {
+      question: "Can joint owners both claim subsidy?",
+      answer:
+        "Where a property has joint ownership, normally subsidy is granted once against the single eligible electricity consumer account. Even if two names appear on the property papers, the scheme doesn’t double the subsidy. We document this clearly to avoid any misunderstanding within the family.",
+      keywords: [
+        "joint owner subsidy",
+        "two owners house",
+        "joint property solar",
+        "both owners subsidy",
+        "shared house subsidy",
+        "co owner subsidy",
+      ],
+    },
+    {
+      question: "Does PM Surya Ghar cover solar water heaters?",
+      answer:
+        "PM Surya Ghar primarily targets rooftop solar PV (electricity). Solar water heaters may be supported under different state or central programs, depending on policy. We can help you understand options, but the main Muft Bijli benefits relate to electricity-generating rooftop panels.",
+      keywords: [
+        "solar water heater scheme",
+        "geyser subsidy",
+        "water heating subsidy",
+        "surya ghar water heater",
+        "hot water scheme",
+      ],
+    },
+    {
+      question: "Is three-phase connection required for subsidy?",
+      answer:
+        "Both single-phase and three-phase connections are eligible, as long as they meet DISCOM norms for rooftop solar capacity. Very large systems on tiny single-phase connections are not practical. We check your sanction load and suggest the correct sizing and any upgrade if needed.",
+      keywords: [
+        "single phase subsidy",
+        "three phase solar",
+        "1 phase 3 phase",
+        "phase requirement",
+        "phase for solar",
+        "single phase eligible",
+      ],
+    },
+    {
+      question: "What is the minimum system size under PM Surya Ghar?",
+      answer:
+        "Most utilities and portal flows effectively start from 1 kW and above because of technical, safety and cost reasons. Very tiny systems give very low savings and are harder to justify under formal schemes. For homes, 1–3 kW is usually the sweet spot in practice.",
+      keywords: [
+        "minimum kw",
+        "smallest system",
+        "minimum capacity",
+        "0.5kw subsidy",
+        "half kw subsidy",
+        "tiny system subsidy",
+      ],
+    },
+    {
+      question: "Will my existing state subsidy affect PM Surya Ghar benefit?",
+      answer:
+        "Generally, you cannot stack multiple rooftop subsidies for the same installation. If a state-level rooftop subsidy is active, rules may specify whether central support is adjusted or if only one of them applies. We always check the latest circulars before confirming your final benefit.",
+      keywords: [
+        "double subsidy",
+        "state plus central",
+        "two subsidy together",
+        "combined subsidy",
+        "overlapping subsidy",
+        "both schemes",
+      ],
+    },
+    {
+      question: "How do you ensure my system meets scheme quality norms?",
+      answer:
+        "We use MNRE-approved brands, follow BIS standards, and design as per DISCOM guidelines. Wiring, earthing, structure design and protections all match code. After commissioning, DISCOM verifies the installation physically before activating net meter and subsidy processing, so quality is tightly controlled.",
+      keywords: [
+        "quality norms",
+        "mnre norms",
+        "bis standard",
+        "standard compliance",
+        "meets scheme norms",
+        "safety standards",
+      ],
+    },
+    {
+      question: "Can I change vendor after applying on the portal?",
+      answer:
+        "In many cases, the portal allows vendor change before installation is marked complete, but it depends on current workflow and DISCOM status. Changing vendors mid-way can delay your project. We suggest choosing an empanelled partner you trust from the start to avoid repeated steps.",
+      keywords: [
+        "change vendor",
+        "switch vendor",
+        "change installer",
+        "change company",
+        "change service provider",
+        "vendor change portal",
+      ],
+    },
+    {
+      question: "Will my subsidy reduce if panel prices fall later?",
+      answer:
+        "The subsidy amount is determined by notified structure, not daily market prices. If hardware prices decrease over time, future applicants may benefit with lower net costs, but your already-approved subsidy amount for that period stays as per the official norms at the time of sanction.",
+      keywords: [
+        "panel price fall",
+        "subsidy change future",
+        "less price later",
+        "if cost decreases",
+        "future price effect",
+        "price drop",
+      ],
+    },
+    {
+      question: "What happens after 25 years when warranty ends?",
+      answer:
+        "After 25 years, panels still typically produce 75–85% of their original output. You can keep using them, selectively replace weaker modules, or upgrade to new technology. By then, you’d have recovered your investment many times over through savings, so system refresh becomes a choice, not a burden.",
+      keywords: [
+        "after 25 years",
+        "after warranty",
+        "end of life",
+        "when warranty over",
+        "what happens later",
+        "life after 25 years",
+      ],
+    },
+    {
+      question: "Can I combine battery backup and PM Surya Ghar subsidy?",
+      answer:
+        "Yes, you can install a hybrid system where rooftop PV is subsidy-eligible and battery storage is added as a separate cost component. The subsidy is calculated on the eligible PV part. Batteries are useful in frequent outage areas, but we design them carefully so ROI still stays attractive.",
+      keywords: [
+        "battery plus subsidy",
+        "hybrid with subsidy",
+        "battery in scheme",
+        "backup with pm surya ghar",
+        "battery and rooftop scheme",
+      ],
+    },
+    {
+      question: "How do you decide ideal system size for my home?",
+      answer:
+        "We study your last 6–12 months’ electricity bills, check sanctioned load, understand appliances and AC usage, review your roof space and budget, and then simulate different system sizes. This way we suggest a capacity that balances subsidy, savings, and future needs instead of blindly oversizing.",
+      keywords: [
+        "ideal size",
+        "how many kw",
+        "right capacity",
+        "what size system",
+        "kw suggestion",
+        "how to decide size",
+      ],
+    },
+    {
+      question: "What if my monthly consumption is very low?",
+      answer:
+        "If your usage is already very small, a large system might not be economical even with subsidy. In such cases we consider 1 kW or focus mainly on reliability and future usage growth rather than aggressive savings. A quick bill analysis helps us decide if solar truly makes sense for you.",
+      keywords: [
+        "low consumption",
+        "small bill",
+        "very low usage",
+        "small user",
+        "less units",
+        "tiny bill",
+      ],
+    },
+    {
+      question: "Can I combine solar with energy efficiency upgrades?",
+      answer:
+        "Yes, combining rooftop solar with LED lighting, efficient fans, inverter ACs, and smart usage habits gives the best results. First we cut wastage, then we size solar for your optimized load. This reduces both upfront system cost and your overall lifetime spending on electricity.",
+      keywords: [
+        "efficiency plus solar",
+        "led and solar",
+        "ac and solar",
+        "save more electricity",
+        "efficiency upgrades",
+        "efficient house",
+      ],
+    },
+    {
+      question: "Is PM Surya Ghar helpful for me?",
+      answer:
+        "Absolutely! If you own a home with electricity bills over ₹1,500/month, PM Surya Ghar is highly beneficial. You get up to ₹78,000 subsidy, 18-22% annual ROI, protection from tariff hikes, and 25+ years of savings. Tell me your monthly bill - I'll show exact benefits!",
+      keywords: [
+        "is helpful",
+        "is beneficial",
+        "should i take",
+        "is it good",
+        "worth taking",
+        "is scheme good",
+        "helpful for me",
+        "benefit me",
+        "will it help",
+        "good for me",
+        "is surya ghar helpful",
+        "pm surya ghar helpful",
+        "scheme helpful",
+        "yojana helpful",
+        "useful for me",
+        "advantage for me",
+        "good scheme",
+      ],
+    },
+    {
+      question: "Who should take PM Surya Ghar scheme?",
+      answer:
+        "Perfect for: homeowners with ₹1,500+ monthly bills, those with open roof space (100+ sq ft), people wanting protection from rising electricity rates, environmentally conscious families. If you plan to stay in your home 3+ years, solar under PM Surya Ghar is excellent!",
+      keywords: [
+        "who should take",
+        "who benefits",
+        "right for me",
+        "suitable for",
+        "for whom",
+        "who needs solar",
+        "who should apply",
+        "eligibility benefit",
+      ],
+    },
+    {
+      question: "Will solar really save me money?",
+      answer:
+        "Yes! A 3kW system saves ₹36,000-60,000 yearly. After subsidy, your investment pays back in just 3-5 years. Then enjoy 20+ years of almost-free electricity! 500+ families in Tripura already saving big. Want to see calculation for your home? 📊",
+      keywords: [
+        "really save",
+        "actually save",
+        "truly beneficial",
+        "genuine savings",
+        "will save money",
+        "does it work",
+        "real benefits",
+        "actually works",
       ],
     },
   ],
