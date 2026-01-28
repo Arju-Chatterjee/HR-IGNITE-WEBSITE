@@ -509,7 +509,7 @@ const ContactCTA = () => {
 
               {/* WhatsApp Button - Enhanced */}
               <motion.a
-                href="https://wa.me/919714533858?text=Hi%2C%20I%20want%20solar%20installation%20details"
+                href="https://wa.me/917005682736?text=Hi%2C%20I%20want%20solar%20installation%20details"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.03, y: -2 }}

@@ -104,37 +104,41 @@ const SystemCards = () => {
   };
 
   const getSystemStats = () => {
-    if (!selectedSystem) return null;
-    const kw = parseInt(selectedSystem);
+  if (!selectedSystem) return null;
+  const kw = parseInt(selectedSystem);
 
-    const dailyUnits = kw * 4.5;
-    const annualUnits = dailyUnits * 365;
-    const monthlySavings = kw * 1000;
-    const yearlySavings = monthlySavings * 12;
-    const totalSavings = yearlySavings * selectedYears;
+  // 🔹 Generation logic
+  const dailyUnits = kw * 4;            // 4 units per kW
+  const annualUnits = dailyUnits * 365; // yearly generation
 
-    let subsidy = 0;
-    if (kw <= 2) subsidy = kw * 30000;
-    else if (kw <= 3) subsidy = 60000 + (kw - 2) * 18000;
-    else subsidy = 78000;
+  const monthlySavings = kw * 1000;
+  const yearlySavings = monthlySavings * 12;
+  const totalSavings = yearlySavings * selectedYears;
 
-    const costBeforeSubsidy = kw * 62000;
-    const netCost = costBeforeSubsidy - subsidy;
-    const paybackYears = Math.round((netCost / yearlySavings) * 10) / 10;
+  // 🔹 PM Surya Ghar Subsidy logic
+  let subsidy = 0;
+  if (kw === 1) subsidy = 33000;
+  else if (kw === 2) subsidy = 66000;
+  else if (kw >= 3) subsidy = 85800;
 
-    return {
-      dailyUnits: Math.round(dailyUnits),
-      annualUnits: Math.round(annualUnits),
-      monthlySavings,
-      yearlySavings,
-      totalSavings,
-      subsidy,
-      costBeforeSubsidy,
-      netCost,
-      paybackYears,
-      roi: Math.round((yearlySavings / netCost) * 100 * 100) / 100,
-    };
+  const costBeforeSubsidy = kw * 62000;
+  const netCost = costBeforeSubsidy - subsidy;
+  const paybackYears = Math.round((netCost / yearlySavings) * 10) / 10;
+
+  return {
+    dailyUnits: Math.round(dailyUnits),
+    annualUnits: Math.round(annualUnits),
+    monthlySavings,
+    yearlySavings,
+    totalSavings,
+    subsidy,
+    costBeforeSubsidy,
+    netCost,
+    paybackYears,
+    roi: Math.round((yearlySavings / netCost) * 100 * 100) / 100,
   };
+};
+
 
   const stats = getSystemStats();
 
@@ -509,12 +513,12 @@ const SystemCards = () => {
                           <h4 className="text-3xl font-black text-gray-900 mb-1">{selectedSystem}</h4>
                           <p className="text-gray-600 font-medium">Solar Power System</p>
                         </div>
-                        <motion.div
+                        {/* <motion.div
                           whileHover={{ scale: 1.05 }}
                           className="px-4 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-full font-bold shadow-lg"
                         >
                           {stats.roi}% ROI/year
-                        </motion.div>
+                        </motion.div> */}
                       </div>
 
                       {/* Year Selector - Enhanced */}
@@ -557,7 +561,7 @@ const SystemCards = () => {
                           </div>
                           <div className="text-xs text-gray-500 mt-1">Over {selectedYears} {selectedYears === 1 ? "year" : "years"}</div>
                         </motion.div>
-
+{/* 
                         <motion.div
                           whileHover={{ scale: 1.02 }}
                           className="bg-white rounded-xl p-4 border border-blue-200 shadow-sm"
@@ -572,7 +576,7 @@ const SystemCards = () => {
                             ₹{stats.netCost.toLocaleString()}
                           </div>
                           <div className="text-xs text-gray-500 mt-1">After ₹{stats.subsidy.toLocaleString()} subsidy</div>
-                        </motion.div>
+                        </motion.div> */}
 
                         <motion.div
                           whileHover={{ scale: 1.02 }}
@@ -590,7 +594,7 @@ const SystemCards = () => {
                           <div className="text-xs text-gray-500 mt-1">Units per day</div>
                         </motion.div>
 
-                        <motion.div
+                        {/* <motion.div
                           whileHover={{ scale: 1.02 }}
                           className="bg-white rounded-xl p-4 border border-purple-200 shadow-sm"
                         >
@@ -604,7 +608,7 @@ const SystemCards = () => {
                             {stats.paybackYears}
                           </div>
                           <div className="text-xs text-gray-500 mt-1">Years to break-even</div>
-                        </motion.div>
+                        </motion.div> */}
                       </div>
 
                       {/* Key Benefits */}
@@ -625,7 +629,25 @@ const SystemCards = () => {
                           <div className="flex items-center gap-2">
                             <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
                             <span className="text-gray-700">
-                              <strong className="text-gray-900">Better ROI:</strong> 18-22% returns, higher than FD/SIP
+                              <strong className="text-gray-900">Panel Warranty:</strong> 27 Years
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                            <span className="text-gray-700">
+                              <strong className="text-gray-900">Inverter Warranty:</strong> 10 Years
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                            <span className="text-gray-700">
+                              <strong className="text-gray-900">Free Servicing:</strong> 5 Years
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <CheckCircle className="w-4 h-4 text-green-600 flex-shrink-0" />
+                            <span className="text-gray-700">
+                              <strong className="text-gray-900">Structure Warranty:</strong> Lifetime
                             </span>
                           </div>
                         </div>
